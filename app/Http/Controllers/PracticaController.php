@@ -8,6 +8,6 @@ class PracticaController extends Controller
 {
     public function index(){
 
-        return view('practicas.tareas');
+        return view('categoria.form');
     }
 }
