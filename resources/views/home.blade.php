@@ -1,15 +1,16 @@
  @extends('layouts.app')
 
-    @section('title', 'Lista de Usuarios')
+    @section('title', 'Practicas')
 
     @section('content')
         <div class="container mt-4">
-            <h2>Lista de Usuarios</h2>
+            <h2>Practicas</h2>
 
             <div class="container mb-5" style="border: 1px solid orange">
                 <div class="row gy-5">
                     <div class="col-6">
                         <h2>Ejercicio 2</h2>
+                        <p>elemntos a usar container, row, col</p>
                         <div class="p-3">columna gato1</div>
                     </div>
                     <div class="col-6">

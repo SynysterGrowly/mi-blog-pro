@@ -1,37 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Lista de Usuarios')
+@section('title', 'Practicas')
 
 @section('content')
 
     <div class="container mt-4">
         <div class="row gy-5">
 
-            <h2>Lista de Usuarios</h2>
-
-            <div class="container mb-5" style="border: 1px solid orange">
-                <div class="row gy-5">
-                    <div class="col-6">
-                        <h2>Ejercicio 2</h2>
-                        <div class="p-3">columna gato1</div>
-                    </div>
-                    <div class="col-6">
-                        <div class="p-3">columna gato2</div>
-                    </div>
-                    <div class="col-6">
-                        <div class="p-3">columna gato3</div>
-                    </div>
-                    <div class="col-6">
-                        <div class="p-3">columna gato4</div>
-                    </div>
-                </div>
-            </div>
+            <h2>Lista de Practicas</h2>
 
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12 mi-estilo-div">
-                        <h2>Grid: container, col 1</h2>
+                    <h2>Ejercicio 2</h2>
+                    <div class="col-lg-4 col-md-6 col-12 ">
+                        <h2>columna 1</h2>
                         <p>columna 1</p>
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 bg-light p-3 text-center">
@@ -76,8 +59,10 @@
             </div>
 
 
+
             <div class="container">
                 <div class="row">
+                    <h2> Ejercicio 3</h2>
                     <div class="col-12">
                         <div class="card" style="width: 18rem;">
                             <img src="{{asset('asset/pokemon.jpg') }}" class="card-img-top" alt="...">
@@ -115,7 +100,37 @@
                     </table>
                 </div>
             </div>
-            
+
+            <form>
+            <div class="mb-3">
+                <h2> Ejercicio 5 </h2>
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico:</label>
+                <input type="email" class="form-control" id="email" placeholder="correo@ejemplo.com">
+            </div>
+            <div class="mb-3">
+                <label for="mensaje" class="form-label">Mensaje:</label>
+                <textarea class="form-control" id="mensaje" rows="3"></textarea>
+            </div>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
     </div>
 @endsection
