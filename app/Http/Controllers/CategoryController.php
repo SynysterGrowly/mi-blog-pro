@@ -7,16 +7,20 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
-    {
 
-
-        return view('categorias.index');
-    }
 
     public function form()
     {
-        return view('categorias.form');
+
+        return view('categoria.form');
     }
+
+    public function lista()
+
+    {
+        $categoria = Category::all();
+        return view('categoria.lista', compact('categoria'));
+    }
+
 
 }

@@ -35,7 +35,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="">lISTA</a></li>
-                                <li><a class="dropdown-item" href="">FORMULARIO</a></li>
+                                <li><a class="dropdown-item" href="{{route('categoria.form')}}">FORMULARIO</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
