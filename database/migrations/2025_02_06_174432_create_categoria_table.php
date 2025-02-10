@@ -12,16 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categorias', function (Blueprint $table) {
-            $table->id(); // Clave primariae
-            $table->string('nombre', 255); // Nombre de la categoría (rquerido)
-            $table->text('descripcion')->nullable(); // Descripción (opcional)
-            $table->timestamps(); // created_at y updated_at
+            $table->id();
+            $table->string('nombre', 255);
+            $table->text('descripcion')->nullable();
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('categoria');

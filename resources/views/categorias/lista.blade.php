@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Lista Categorias')
+@section('title', 'Categoria de listas')
 
 @section('content')
 
@@ -12,6 +12,7 @@
                     <th>ID</th>
                     <th>Nombre de categoria</th>
                     <th>Descripcion</th>
+                    <th> </th>
 
                 </tr>
                 </thead>
