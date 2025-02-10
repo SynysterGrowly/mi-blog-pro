@@ -1,46 +1,28 @@
 @extends('layouts.app')
 
-@section('title', 'Categorias')
+@section('title', 'Editar Categoría')
+
 @section('content')
-
-
     <div class="container">
         <h1>Editar Categoría</h1>
 
-
-        @if ($errors->any())
-            <div class="error">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('categoria.update' , $categoria->id) }}">
-
+        <form method="POST" action="{{ route('categorias.update', $categoria->id) }}">
             @csrf
             @method('PATCH')
 
-            <label for="nombre">Nombre de la Categoría:</label>
-            <input type="hidden" value="{{$categoria->id}}" name="categoria_id"/>
-            <input type="text" id="nombre" name="nombre" placeholder="Escribe el nombre de la categoría" value="{{$categoria->nombre}}" required>
-            @error('nombre')
-            <span class="error">{{ $message }}</span>
-            @enderror
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre de la Categoría</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre', $categoria->nombre) }}" required>
+            </div>
 
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" rows="5">{{ old('descripcion', $categoria->descripcion) }}</textarea>
+            </div>
 
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" rows="5" placeholder="Escribe una breve descripción de la categoría" required>{{$categoria->descripcion}}</textarea>
-            @error('descripcion')
-            <span class="error">{{ $message }}</span>
-            @enderror
-
-
-            <button type="submit">Actualizar Categoría</button>
+            <button type="submit" class="btn btn-primary">Actualizar Categoría</button>
         </form>
     </div>
-
 @endsection
+
 

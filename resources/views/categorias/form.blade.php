@@ -3,7 +3,8 @@
    @section('title', 'Categorias')
 @section('content')
 
-<div class="container">
+    <div class="container mt-4">
+        <div class="row gy-5">
     <h1>Formulario de Categorías</h1>
 
 
@@ -19,6 +20,7 @@
 
     <form method="POST" action="{{ route('categorias.store') }}">
         @csrf
+
 
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre de la Categoría</label>
