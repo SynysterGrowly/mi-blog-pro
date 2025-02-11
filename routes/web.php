@@ -25,6 +25,10 @@ Route::delete('/categoria/destroy/{idCategoria}', [CategoryController::class, 'd
 
 Route::get('/entrada/form' , [EntradaController::class, 'form'])->name('entrada.form');
 Route::get('/entrada/lista', [EntradaController::class, 'lista'])->name('entrada.lista');
+Route::post('/entrada/store', [EntradaController::class, 'store'])->name('entrada.store');
+Route::get('/entrada/editar/{idEntrada}' , [EntradaController::class, 'editar'])->name('entrada.editar');
+Route::patch('/entrada/update/{idEntrada}', [EntradaController::class, 'update'])->name('entrada.update');
+Route::delete('/entrada/destroy/{idEntrada}', [EntradaController::class, 'destroy'])->name('entrada.destroy');
 
 
 

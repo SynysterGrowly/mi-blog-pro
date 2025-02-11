@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 
 class Entrada extends Model
+{
 
-     public function list()
+     public function lista()
     {
 
         $entradas = Entrada::all();
@@ -81,9 +82,9 @@ class Entrada extends Model
 
   }
 
-    public function destroy($id)
+    public function destroy($idEntrada)
     {
-    $entrada = Entrada::findOrFail($id);
+    $entrada = Entrada::findOrFail($idEntrada);
     $entrada->delete();
 
     return redirect()->route('entrada.index')->with('success', 'Entrada eliminada correctamente');
