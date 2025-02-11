@@ -31,11 +31,11 @@ class CategoryController extends Controller
 
         try {
             Category::create($validated);
+            return redirect()->route('categorias.lista')->with('success', 'Categoría creada exitosamente.');
 
-            return redirect()->route('categoria.lista')->with('success', 'Categoría creada exitosamente.');
         } catch (\Exception $e) {
-
-            return redirect()->back()->withErrors('Guardado');
+            dd($e->getMessage());
+            return redirect()->back()->withErrors('Ocurrio un error'); //Revisa porque tienes este error
         }
     }
 

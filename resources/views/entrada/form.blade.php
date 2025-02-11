@@ -16,11 +16,11 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('entrada.store') }}">
+        <form method="POST" action="{{ route('entrada.store') }}" >
             @csrf
 
             <div class="mb-3">
-                <label for="titulo" class="form-label">Titulo</label>
+                <label for="titulo" class="form-label">Título</label>
                 <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Escribe el título" value="{{ old('titulo') }}" required>
                 @error('titulo')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -48,30 +48,17 @@
                 <img src=" " class="rounded float-end" alt="...">
             </div>
 
-
             <div class="mb-3">
                 <label for="categoria_id">Categoría</label>
                 <select name="categoria_id" id="categoria_id" required>
                     <option value="">Seleccione una categoría</option>
-
                     @foreach($categorias as $categoria)
-                        <option value="{{ $categoria->id }}">
+                        <option value="{{ $categoria->id }}" {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
                             {{ $categoria->nombre }}
                         </option>
                     @endforeach
-
                 </select>
             </div>
-
-
-
-                @if ($errors->has('categoria_id'))
-                    <div class="text-danger">
-                        {{ $errors->first('categoria_id') }}
-                    </div>
-                @endif
-            </div>
-
 
             <div class="mb-3">
                 <label for="fecha_publicacion" class="form-label">Fecha de Publicación</label>
@@ -89,9 +76,7 @@
                 </select>
             </div>
 
-            <form action="{{ route('entrada.store') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-danger">GUARDAR</button>
-            </form>
-
+            <button type="submit" class="btn btn-danger">GUARDAR</button>
+        </form>
+    </div>
 @endsection

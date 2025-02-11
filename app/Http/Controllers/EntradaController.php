@@ -12,7 +12,8 @@ class EntradaController extends Controller
 {
     public function form()
     {
-        return view('entrada.form');
+        $categorias = Category::all();
+        return view('entrada.form',compact('categorias'));
     }
 
     public function lista()
@@ -27,15 +28,23 @@ class EntradaController extends Controller
 
     public function store(Request $request)
     {
+
         try {
+
             $nuevaEntrada = new Entrada();
+
             $nuevaEntrada->titulo = $request->input('titulo');
             $nuevaEntrada->descripcion = $request->input('descripcion');
             $nuevaEntrada->contenido = $request->input('contenido');
             $nuevaEntrada->categoria_id = $request->input('categoria_id');
+
+
+            $nuevaEntrada->imagen =  $variableImagen;
+
+
             $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
             $nuevaEntrada->estado = $request->input('estado');
-            $nuevaEntrada->save();ave();
+            $nuevaEntrada->save();
 
             return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
         } catch (\Exception $e) {
