@@ -32,10 +32,10 @@ class CategoryController extends Controller
         try {
             Category::create($validated);
 
-            return redirect()->route('categoria.index')->with('success', 'Categoría creada exitosamente.');
+            return redirect()->route('categoria.lista')->with('success', 'Categoría creada exitosamente.');
         } catch (\Exception $e) {
 
-            return redirect()->back()->withErrors('Error al crear la categoría. Por favor, inténtalo de nuevo.');
+            return redirect()->back()->withErrors('Guardado');
         }
     }
 

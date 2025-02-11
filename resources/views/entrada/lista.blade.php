@@ -4,53 +4,54 @@
 
 @section('content')
 
-    <h1>Lista de Categorías</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Lista de Categorías</h1>
 
-    @if(session('success'))
-        <div class="alert alert-primary" role="alert">
-            {{ session('success') }}
-        </div>>
-    @endif
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <table class="table">
-        <thead>
-        <tr>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Contenido</th>
+                        <th scope="col" class="text-center">Editar</th>
+                        <th scope="col" class="text-center">Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-            <th scope="col">Titulo</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Contenido</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Eliminar</th>
+                    @foreach($entradas as $entrada)
+                        <tr>
+                            <td>{{ $entrada->titulo }}</td>
+                            <td>{{ $entrada->descripcion }}</td>
+                            <td>{{ $entrada->contenido }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('entrada.editar', $entrada->id) }}" class="btn btn-warning btn-sm">
+                                    Editar
+                                </a>
+                            </td>
 
-        </tr>
-        </thead>
-        <tbody>
-
-        @foreach($entradas as $entrada)
-            <tr>
-                <td>{{ $entrada->titulo }}</td>
-                <td>{{ $entrada->descripcion }}</td>
-                <td>{{ $entrada->contenido }}</td>
-                <td>
-                    <a href="{{route('entrada.editar', $entrada->id)}}" class="btn btn-primary">
-                        editar
-                    </a>
-
-                </td>
-
-                <td>
-
-                    <form action="{{ route('entrada.destroy', $entrada->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                    </form>
-
-                </td>
-            </tr>
-
-        @endforeach
-        </tbody>
-    </table>
+                            <td class="text-center">
+                                <form action="{{ route('entrada.destroy', $entrada->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar esta entrada?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 @endsection
+

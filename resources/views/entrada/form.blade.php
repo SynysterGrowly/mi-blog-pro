@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Lista Categorias')
+@section('title', 'Formulario')
 
 @section('content')
     <div class="container">
@@ -64,7 +64,7 @@
             </div>
 
 
-            <!-- Mostrar error si existe -->
+
                 @if ($errors->has('categoria_id'))
                     <div class="text-danger">
                         {{ $errors->first('categoria_id') }}

@@ -27,45 +27,47 @@ class EntradaController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'titulo' => 'required|max:255',
-            'descripcion' => 'nullable|max:500',
-            'contenido' => 'nullable|max:500',
-            'categoria_id' => 'required|exists:categorias,id',
-            'fecha_publicacion' => 'required|date',
-            'estado' => 'required',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        try {
+            $nuevaEntrada = new Entrada();
+            $nuevaEntrada->titulo = $request->input('titulo');
+            $nuevaEntrada->descripcion = $request->input('descripcion');
+            $nuevaEntrada->contenido = $request->input('contenido');
+            $nuevaEntrada->categoria_id = $request->input('categoria_id');
+            $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
+            $nuevaEntrada->estado = $request->input('estado');
+            $nuevaEntrada->save();ave();
 
-        $entrada = new Entrada();
-        $entrada->titulo = $validated['titulo'];
-        $entrada->descripcion = $validated['descripcion'];
-        $entrada->contenido = $validated['contenido'];
-        $entrada->categoria_id = $validated['categoria_id'];
-        $entrada->fecha_publicacion = $validated['fecha_publicacion'];
-        $entrada->estado = $validated['estado'];
+            return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
+        } catch (\Exception $e) {
 
-
-        return redirect()->route('entrada.form')->with('success', 'Entrada creada exitosamente.');
+            return redirect()->back()->withErrors('Error al crear la entrada. Por favor, inténtalo de nuevo.');
+        }
     }
-
 
     public function update(Request $request, $idEntrada)
     {
         $validated = $request->validate([
-            'titulo' => 'required|max:255',
-            'descripcion' => 'nullable|max:500',
-            'contenido' => 'nullable|max:500',
-            'categoria_id' => 'required|exists:categorias,id',
+            'titulo' => 'required|string|max:255',
+            'descripcion' => 'nullable|string|max:500',
+            'contenido' => 'nullable|string|max:500',
+            'categoria_id' => 'nullable|integer',
             'fecha_publicacion' => 'nullable|date',
-            'estado' => 'nullable|in:proceso,finalizado',
-
+            'estado' => 'nullable|string|max:500',
         ]);
 
+        try{
 
-        return redirect()->route('entrada.lista')->with('success', 'Entrada actualizada exitosamente.');
+            $entrada = Entrada::where('id', $idEntrada)->first();
+            $entrada->update($validated);
+
+
+            return redirect()->route('entrada.lista')->with('success', 'Entrada actualizada exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors( 'Error');
+
+        }
+
     }
-
 
     public function destroy($id)
     {
