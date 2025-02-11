@@ -9,31 +9,37 @@
     @if(session('success'))
         <div class="alert alert-primary" role="alert">
             {{ session('success') }}
-        </div>
+        </div>>
     @endif
 
     <table class="table">
         <thead>
         <tr>
 
-            <th scope="col">Categoria</th>
+            <th scope="col">Titulo</th>
             <th scope="col">Descripción</th>
+            <th scope="col">Contenido</th>
             <th scope="col">Editar</th>
-            <th scope="col"> Eliminar</th>
+            <th scope="col">Eliminar</th>
+
         </tr>
         </thead>
         <tbody>
-        @foreach($categorias as $categoria)
+
+        @foreach($entradas as $entrada)
             <tr>
-                <td>{{ $categoria->nombre }}</td>
-                <td>{{ $categoria->descripcion }}</td>
+                <td>{{ $entrada->titulo }}</td>
+                <td>{{ $entrada->descripcion }}</td>
+                <td>{{ $entrada->contenido }}</td>
                 <td>
-                    <a href="{{route('categoria.editar', $categoria->id)}}" class="btn btn-primary">
+                    <a href="{{route('entrada.editar', $entrada->id)}}" class="btn btn-primary">
                         editar
                     </a>
+
                 </td>
 
                 <td>
+
                     <form action="{{ route('entrada.destroy', $entrada->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -42,8 +48,9 @@
 
                 </td>
             </tr>
+
         @endforeach
         </tbody>
     </table>
-@endsection
 
+@endsection

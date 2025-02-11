@@ -4,7 +4,6 @@
 
 @section('content')
 
-<div class="container">
     <h1>Editar Entrada</h1>
 
 
@@ -67,7 +66,8 @@
 
         <button type="submit">Guardar </button>
     </form>
-</div>
+    </div>
 
 @endsection
+
 

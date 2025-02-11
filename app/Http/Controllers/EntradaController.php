@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Entrada;
 
@@ -9,7 +10,6 @@ use App\Models\Entrada;
 
 class EntradaController extends Controller
 {
-
     public function form()
     {
         return view('entrada.form');
@@ -17,81 +17,63 @@ class EntradaController extends Controller
 
     public function lista()
     {
-        $entrada = Entrada::all();
-        return view('entrada.lista', compact('entrada'));
-    }
 
+        $entradas = Entrada::all();
+
+
+
+        return view('entrada.lista', compact('entradas'));
+    }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descripcion' => 'nullable|string|max:500',
-            'contenido' => 'nullable|string',
-            'categoria_id' => 'required|integer|exists:categorias,id',
-            'fecha_publicacion' => 'nullable|date',
-            'estado' => 'required|in:proceso,finalizado',
+            'titulo' => 'required|max:255',
+            'descripcion' => 'nullable|max:500',
+            'contenido' => 'nullable|max:500',
+            'categoria_id' => 'required|exists:categorias,id',
+            'fecha_publicacion' => 'required|date',
+            'estado' => 'required',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        try {
-            Entrada::create([
-                'titulo' => $validated['titulo'],
-                'descripcion' => $validated['descripcion'],
-                'contenido' => $validated['contenido'],
-                'categoria_id' => $validated['categoria_id'],
-                'fecha_publicacion' => $validated['fecha_publicacion'] ?? now(),
-                'estado' => $validated['estado'],
-                'usuario_id' => Auth::id() ?? 1,
-            ]);
-
-            return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Error al crear la entrada.');
-        }
-    }
+        $entrada = new Entrada();
+        $entrada->titulo = $validated['titulo'];
+        $entrada->descripcion = $validated['descripcion'];
+        $entrada->contenido = $validated['contenido'];
+        $entrada->categoria_id = $validated['categoria_id'];
+        $entrada->fecha_publicacion = $validated['fecha_publicacion'];
+        $entrada->estado = $validated['estado'];
 
 
-    public function editar($idEntrada)
-    {
-        $entrada = Entrada::findOrFail($idEntrada);
-        $categorias = Category::all();
-
-        return view('entrada.editar', compact('entrada', 'categorias'));
+        return redirect()->route('entrada.form')->with('success', 'Entrada creada exitosamente.');
     }
 
 
     public function update(Request $request, $idEntrada)
     {
         $validated = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descripcion' => 'nullable|string|max:500',
-            'contenido' => 'nullable|string|max:500',
+            'titulo' => 'required|max:255',
+            'descripcion' => 'nullable|max:500',
+            'contenido' => 'nullable|max:500',
+            'categoria_id' => 'required|exists:categorias,id',
             'fecha_publicacion' => 'nullable|date',
-            'categoria_id' => 'nullable|integer',
-            'estado' => 'nullable|string|max:500',
+            'estado' => 'nullable|in:proceso,finalizado',
 
         ]);
 
-        try {
-            $entrada = Entrada::where('id', $idEntrada)->first();
-            $entrada->update($validated);
 
-            return redirect()->route('entrada.lista')->with('success', 'Entrada actualizada exitosamente.');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Error al actualizar la entrada.');
-        }
+        return redirect()->route('entrada.lista')->with('success', 'Entrada actualizada exitosamente.');
     }
 
 
-    public function destroy($idEntrada)
+    public function destroy($id)
     {
-        try {
-            $entrada = Entrada::findOrFail($idEntrada);
-            $entrada->delete();
+        $entrada = Entrada::findOrFail($id);
+        $entrada->delete();
 
-            return redirect()->route('entrada.lista')->with('success', 'Entrada eliminada correctamente.');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Error al eliminar la entrada.');
-        }
+        return redirect()->route('entrada.lista')->with('success', 'Entrada eliminada correctamente');
     }
+
+
 }
