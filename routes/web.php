@@ -29,6 +29,6 @@ Route::post('/entrada/store', [EntradaController::class, 'store'])->name('entrad
 Route::get('/entrada/editar/{idEntrada}' , [EntradaController::class, 'editar'])->name('entrada.editar');
 Route::patch('/entrada/update/{idEntrada}', [EntradaController::class, 'update'])->name('entrada.update');
 Route::delete('/entrada/destroy/{idEntrada}', [EntradaController::class, 'destroy'])->name('entrada.destroy');
-Route::get('/entrada/create', [EntradaController::class, 'create'])->name('entrada.create');
+
 
 
