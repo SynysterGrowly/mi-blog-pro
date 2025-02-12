@@ -18,7 +18,8 @@ return new class extends Migration
             $table->timestamp('fecha_publicacion')->useCurrent();
             $table->enum('estado', ['proceso', 'finalizado'])->default('proceso');
             $table->foreignId('categoria_id')->constrained('categorias');
-            $table->foreignId('usuario_id')->constrained('users');
+            $table->foreignId('usuario_id')->constrained('users')->onDelete('cascade');
+
 
 
         });

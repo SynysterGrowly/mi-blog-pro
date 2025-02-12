@@ -10,6 +10,10 @@ use App\Models\Entrada;
 
 class EntradaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function form()
     {
         $categorias = Category::all();
@@ -25,7 +29,6 @@ class EntradaController extends Controller
 
         return view('entrada.lista', compact('entradas'));
     }
-
 
 
     public function store(Request $request)
@@ -46,9 +49,7 @@ class EntradaController extends Controller
             }
             $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
             $nuevaEntrada->estado = $request->input('estado');
-            $nuevaEntrada->foreignId('usuario_id')->default(1)->constrained('users');
-
-
+            $nuevaEntrada->usuario_id = auth()->id();
             $nuevaEntrada->save();
 
             return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
