@@ -26,33 +26,6 @@ class EntradaController extends Controller
         return view('entrada.lista', compact('entradas'));
     }
 
-    public function store(Request $request)
-    {
-
-        try {
-
-            $nuevaEntrada = new Entrada();
-
-            $nuevaEntrada->titulo = $request->input('titulo');
-            $nuevaEntrada->descripcion = $request->input('descripcion');
-            $nuevaEntrada->contenido = $request->input('contenido');
-            $nuevaEntrada->categoria_id = $request->input('categoria_id');
-
-            if ($request->hasFile('imagen')) {
-                $rutaImagen = $request->file('imagen')->store('imagenes', 'public');
-                $nuevaEntrada->imagen = $rutaImagen;
-            }
-            $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
-            $nuevaEntrada->estado = $request->input('estado');
-            $nuevaEntrada->save();
-
-            return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
-        } catch (\Exception $e) {
-
-            return redirect()->back()->withErrors('Error al crear la entrada. Por favor, inténtalo de nuevo.');
-        }
-    }
-
     public function update(Request $request, $idEntrada)
 
     {
@@ -79,6 +52,35 @@ class EntradaController extends Controller
         }
 
     }
+
+    public function store(Request $request)
+    {
+
+
+        try {
+
+            $nuevaEntrada = new Entrada();
+
+            $nuevaEntrada->titulo = $request->input('titulo');
+            $nuevaEntrada->descripcion = $request->input('descripcion');
+            $nuevaEntrada->contenido = $request->input('contenido');
+            $nuevaEntrada->categoria_id = $request->input('categoria_id');
+
+            if ($request->hasFile('imagen')) {
+                $rutaImagen = $request->file('imagen')->store('imagenes', 'public');
+                $nuevaEntrada->imagen = $rutaImagen;
+            }
+            $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
+            $nuevaEntrada->estado = $request->input('estado');
+            $nuevaEntrada->save();
+
+            return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('Error al crear la entrada. Por favor, inténtalo de nuevo.');
+        }
+    }
+
 
     public function destroy($id)
     {
