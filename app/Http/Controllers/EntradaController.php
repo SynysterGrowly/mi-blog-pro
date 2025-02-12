@@ -38,10 +38,10 @@ class EntradaController extends Controller
             $nuevaEntrada->contenido = $request->input('contenido');
             $nuevaEntrada->categoria_id = $request->input('categoria_id');
 
-
-            $nuevaEntrada->imagen =  $variableImagen;
-
-
+            if ($request->hasFile('imagen')) {
+                $rutaImagen = $request->file('imagen')->store('imagenes', 'public');
+                $nuevaEntrada->imagen = $rutaImagen;
+            }
             $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
             $nuevaEntrada->estado = $request->input('estado');
             $nuevaEntrada->save();
@@ -54,11 +54,13 @@ class EntradaController extends Controller
     }
 
     public function update(Request $request, $idEntrada)
+
     {
         $validated = $request->validate([
             'titulo' => 'required|string|max:255',
             'descripcion' => 'nullable|string|max:500',
             'contenido' => 'nullable|string|max:500',
+            'imagen'=> 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'categoria_id' => 'nullable|integer',
             'fecha_publicacion' => 'nullable|date',
             'estado' => 'nullable|string|max:500',

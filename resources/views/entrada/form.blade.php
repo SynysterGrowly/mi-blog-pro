@@ -44,8 +44,12 @@
             </div>
 
             <div class="mb-3">
-                <input type="file" class="form-control">
-                <img src=" " class="rounded float-end" alt="...">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
+
+                @error('imagen')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
