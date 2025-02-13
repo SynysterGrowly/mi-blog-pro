@@ -49,6 +49,7 @@ class EntradaController extends Controller
             $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
             $nuevaEntrada->estado = $request->input('estado');
             $nuevaEntrada->usuario_id = 1;
+
             $nuevaEntrada->save();
 
             return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
