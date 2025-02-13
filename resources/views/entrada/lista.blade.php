@@ -18,10 +18,12 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
+                        <th scope="col"></th>
                         <th scope="col">Título</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Contenido</th>
                         <th scope="col"> Estado</th>
+
 
                         <th scope="col" class="text-center">Editar</th>
                         <th scope="col" class="text-center">Eliminar</th>
@@ -31,10 +33,19 @@
 
                     @foreach($entradas as $entrada)
                         <tr>
+                            <td>
+                                @if ($entrada->imagen)
+                                    <img src="{{ asset('storage/' . $entrada->imagen) }}" alt="Imagen" width="100">
+                                @else
+                                    <span>Sin imagen</span>
+                                @endif
+                            </td>
+
                             <td>{{ $entrada->titulo }}</td>
                             <td>{{ $entrada->descripcion }}</td>
                             <td>{{ $entrada->contenido }}</td>
                             <td>{{$entrada->estado}}</td>
+
 
                             <td class="text-center">
                                 <a href="{{ route('entrada.edit', $entrada->id) }}" class="btn btn-warning btn-sm">

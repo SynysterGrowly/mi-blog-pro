@@ -25,45 +25,6 @@ class EntradaController extends Controller
         return view('entrada.lista', compact('entradas'));
     }
 
-
-    public function store(Request $request)
-    {
-
-        try {
-
-            $nuevaEntrada = new Entrada();
-            $nuevaEntrada->titulo = $request->input('titulo');
-            $nuevaEntrada->descripcion = $request->input('descripcion');
-            $nuevaEntrada->contenido = $request->input('contenido');
-            if ($request->hasFile('imagen')) {
-                $file = $request->file('imagen')->store('public/imagenes');
-
-
-            }
-            $nuevaEntrada->categoria_id = $request->input('categoria_id');
-            $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
-            $nuevaEntrada->estado = $request->input('estado');
-            $nuevaEntrada->usuario_id = $request->user()->id;
-
-
-            $nuevaEntrada->save();
-
-            return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
-        } catch (\Exception $e) {
-
-            return redirect()->back()->withErrors('Error al crear la entrada. Por favor, inténtalo de nuevo.');
-        }
-
-    }
-    public function editar($idEntrada)
-    {
-
-        $categorias = Category::all();
-        $entrada = Entrada::where('id', $idEntrada)->first();
-
-        return view('entrada.edit', compact('categorias', 'entrada'));
-    }
-
     public function update(Request $request, $idEntrada)
 
     {
@@ -91,6 +52,42 @@ class EntradaController extends Controller
         }
 
     }
+    public function store(Request $request)
+    {
+
+        try {
+
+            $nuevaEntrada = new Entrada();
+            $nuevaEntrada->titulo = $request->input('titulo');
+            $nuevaEntrada->descripcion = $request->input('descripcion');
+            $nuevaEntrada->contenido = $request->input('contenido');
+            $nuevaEntrada->categoria_id = $request->input('categoria_id');
+            $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
+            $nuevaEntrada->estado = $request->input('estado');
+            $nuevaEntrada->usuario_id = $request->user()->id;
+
+            if ($request->hasFile('imagen')) {
+                $imagenPath = $request->file('imagen')->store('imagenes', 'public');
+                $nuevaEntrada->imagen = $imagenPath;
+            }
+            $nuevaEntrada->save();
+
+            return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('Error al crear la entrada. Por favor, inténtalo de nuevo.');
+        }
+
+    }
+    public function editar($idEntrada)
+    {
+
+        $categorias = Category::all();
+        $entrada = Entrada::where('id', $idEntrada)->first();
+
+        return view('entrada.edit', compact('categorias', 'entrada'));
+    }
+
 
     public function destroy($idEntrada)
     {

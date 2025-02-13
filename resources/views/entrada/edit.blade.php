@@ -45,6 +45,15 @@
             </div>
 
             <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
+
+                @error('imagen')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label for="categoria_id" class="form-label">Categoría</label>
                 <select name="categoria_id" id="categoria_id" class="form-select" required>
                     <option value="">Seleccione una categoría</option>

@@ -36,13 +36,6 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
-                <label for="contenido" class="form-label">Contenido</label>
-                <textarea id="contenido" name="contenido" class="form-control" rows="5" placeholder="Escribe el contenido del blog" required>{{ old('contenido') }}</textarea>
-                @error('contenido')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
 
             <div class="mb-3">
                 <label for="imagen" class="form-label">Imagen</label>
