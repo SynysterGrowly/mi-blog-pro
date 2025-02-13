@@ -16,8 +16,9 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('entrada.update', $entrada->id) }}">
-            @csrf
+        <form method="POST" action="{{ route('entrada.update', $entrada->id) }}" enctype="multipart/form-data">
+
+        @csrf
             @method('PATCH')
 
             <div class="mb-3">
@@ -45,9 +46,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="imagen" class="form-label">Imagen</label>
-                <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
-
+                <label for="imagen" class="form-label">Subir nueva imagen</label>
+                <input type="file" id="imagen" name="imagen" class="form-control" accept="imagenes/*">
                 @error('imagen')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

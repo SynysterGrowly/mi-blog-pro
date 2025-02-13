@@ -36,7 +36,15 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea id="descripcion" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" rows="5" placeholder="Escribe una breve descripción" required>{{ old('descripcion') }}</textarea>
+                @error('descripcion')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
+            
             <div class="mb-3">
                 <label for="imagen" class="form-label">Imagen</label>
                 <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
