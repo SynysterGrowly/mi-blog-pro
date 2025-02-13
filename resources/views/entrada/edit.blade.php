@@ -1,73 +1,81 @@
 @extends('layouts.app')
 
-@section('title', 'Categoria de listas')
+@section('title', 'Editar Entrada')
 
 @section('content')
+    <div class="container">
+        <h1>Editar Entrada</h1>
 
-    <h1>Editar Entrada</h1>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
+        <form method="POST" action="{{ route('entrada.update', $entrada->id) }}">
+            @csrf
+            @method('PATCH')
 
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Escribe el título" value="{{ $entrada->titulo }}" required>
+                @error('titulo')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea id="descripcion" name="descripcion" class="form-control" rows="5" placeholder="Escribe una breve descripción" required>{{ $entrada->descripcion }}</textarea>
+                @error('descripcion')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-    @if ($errors->any())
-        <div class="error">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+            <div class="mb-3">
+                <label for="contenido" class="form-label">Contenido</label>
+                <textarea id="contenido" name="contenido" class="form-control" rows="5" placeholder="Escribe el contenido del blog" required>{{ $entrada->contenido }}</textarea>
+                @error('contenido')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-    <form method="POST" action="{{ route('entrada.update' , $entrada->id) }}">
+            <div class="mb-3">
+                <label for="categoria_id" class="form-label">Categoría</label>
+                <select name="categoria_id" id="categoria_id" class="form-select" required>
+                    <option value="">Seleccione una categoría</option>
+                    @foreach($categorias as $categoria)
+                        <option value="{{ $categoria->id }}" {{ $entrada->categoria_id == $categoria->id ? 'selected' : '' }}>
+                            {{ $categoria->nombre }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-        @csrf
-        @method('PATCH')
+            <div class="mb-3">
+                <label for="fecha_publicacion" class="form-label">Fecha de Publicación</label>
+                <input type="date" id="fecha_publicacion" name="fecha_publicacion" class="form-control" value="{{ $entrada->fecha_publicacion }}" required>
+                @error('fecha_publicacion')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-        <label for="titulo">Titulo</label>
-        <input type="text" id="titulo" name="titulo" placeholder="Escribe el titulo" value="{{$entrada->titulo }}" required>
-        @error('titulo')
-        <span class="error">{{ $message }}</span>
-        @enderror
+            <div class="mb-3">
+                <label for="estado" class="form-label">Estado</label>
+                <select id="estado" name="estado" class="form-select" required>
+                    <option value="proceso" {{ $entrada->estado == 'proceso' ? 'selected' : '' }}>Proceso</option>
+                    <option value="finalizado" {{ $entrada->estado == 'finalizado' ? 'selected' : '' }}>Finalizado</option>
+                </select>
+            </div>
 
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" name="descripcion" rows="5" placeholder="Escribe una breve descripción" required>{{ $entrada->descripcion }}</textarea>
-        @error('descripcion')
-        <span class="error">{{ $message }}</span>
-        @enderror
-
-        <label for="contenido">Contenido:</label>
-        <textarea id="contenido" name="contenido" rows="5" placeholder="Escribe el contenido del blog" required>{{ $entrada->contenido }}</textarea>
-        @error('contenido')
-        <span class="error">{{ $message }}</span>
-        @enderror
-
-        <label for="contenido">Categoria:</label>
-        <select name="categoria_id" >
-            @foreach($categorias as $categoria)
-                <option value ="{{ $categoria->id }} ">{{$categoria->nombre}} </option>
-            @endforeach
-        </select>
-
-        <label for="fecha_publicacion">Fecha de Publicación:</label>
-        <input type="date" id="fecha_publicacion" name="fecha_publicacion" value="{{ $entrada->fecha_publicacion }}" required>
-        @error('fecha_publicacion')
-        <span class="error">{{ $message }}</span>
-        @enderror
-
-        <label for="estado">Estado:</label>
-        <select id="estado" name="estado" required>
-            <option value="proceso" {{ $entrada->estado == 'proceso' ? 'selected' : '' }} selected>Proceso</option>
-            <option value="finalizado" {{ $entrada->estado == 'finalizado' ? 'selected' : '' }}>Finalizado</option>
-        </select>
-
-
-
-
-        <button type="submit">Guardar </button>
-    </form>
+            <button type="submit" class="btn btn-danger">GUARDAR</button>
+        </form>
     </div>
-
 @endsection
+
 
 

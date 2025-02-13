@@ -16,6 +16,7 @@
             </div>
         @endif
 
+
         <form method="POST" action="{{ route('entrada.store') }}" enctype="multipart/form-data">
             @csrf
 

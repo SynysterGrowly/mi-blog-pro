@@ -8,10 +8,7 @@ use App\Models\Entrada;
 
 class EntradaController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function form()
     {
         $categorias = Category::all();
@@ -31,24 +28,23 @@ class EntradaController extends Controller
 
     public function store(Request $request)
     {
+
         try {
 
             $nuevaEntrada = new Entrada();
             $nuevaEntrada->titulo = $request->input('titulo');
             $nuevaEntrada->descripcion = $request->input('descripcion');
             $nuevaEntrada->contenido = $request->input('contenido');
-
             if ($request->hasFile('imagen')) {
-                $imagen = $request->file('imagen');
-                $nombreImagen = time() . '' . preg_replace('/\s+/', '', $imagen->getClientOriginalName());
-                $rutaImagen = $imagen->storeAs('public/imagenes', $nombreImagen);
+                $file = $request->file('imagen')->store('public/imagenes');
 
 
             }
             $nuevaEntrada->categoria_id = $request->input('categoria_id');
             $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
             $nuevaEntrada->estado = $request->input('estado');
-            $nuevaEntrada->usuario_id = 1;
+            $nuevaEntrada->usuario_id = $request->user()->id;
+
 
             $nuevaEntrada->save();
 
@@ -58,13 +54,15 @@ class EntradaController extends Controller
             return redirect()->back()->withErrors('Error al crear la entrada. Por favor, inténtalo de nuevo.');
         }
 
-
-
     }
+    public function editar($idEntrada)
+    {
 
+        $categorias = Category::all();
+        $entrada = Entrada::where('id', $idEntrada)->first();
 
-
-
+        return view('entrada.edit', compact('categorias', 'entrada'));
+    }
 
     public function update(Request $request, $idEntrada)
 
@@ -93,9 +91,10 @@ class EntradaController extends Controller
         }
 
     }
-    public function destroy($id)
+
+    public function destroy($idEntrada)
     {
-        $entrada = Entrada::findOrFail($id);
+        $entrada = Entrada::findOrFail($idEntrada);
         $entrada->delete();
 
         return redirect()->route('entrada.lista')->with('success', 'Entrada eliminada correctamente');

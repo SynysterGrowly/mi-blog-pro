@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="container mt-4">
-        <h1 class="mb-4">Lista de Categorías</h1>
+        <h1 class="mb-4">Lista de Entradas</h1>
 
         @if(session('success'))
             <div class="alert alert-success" role="alert">
@@ -21,6 +21,8 @@
                         <th scope="col">Título</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Contenido</th>
+                        <th scope="col"> Estado</th>
+
                         <th scope="col" class="text-center">Editar</th>
                         <th scope="col" class="text-center">Eliminar</th>
                     </tr>
@@ -32,8 +34,10 @@
                             <td>{{ $entrada->titulo }}</td>
                             <td>{{ $entrada->descripcion }}</td>
                             <td>{{ $entrada->contenido }}</td>
+                            <td>{{$entrada->estado}}</td>
+
                             <td class="text-center">
-                                <a href="{{ route('entrada.editar', $entrada->id) }}" class="btn btn-warning btn-sm">
+                                <a href="{{ route('entrada.edit', $entrada->id) }}" class="btn btn-warning btn-sm">
                                     Editar
                                 </a>
                             </td>
