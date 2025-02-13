@@ -13,7 +13,8 @@ class Entrada extends Model
 
 
     protected $table = 'entradas';
-
+    protected $guarded = [];
 
     protected $fillable = ['titulo', 'descripcion' ,'contenido', 'imagen' ,'categoria_id', 'fecha_publicacion','estado','usuario_id' ];
+
 }

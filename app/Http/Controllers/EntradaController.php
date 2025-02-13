@@ -6,8 +6,6 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Entrada;
 
-
-
 class EntradaController extends Controller
 {
     public function __construct()
@@ -33,23 +31,24 @@ class EntradaController extends Controller
 
     public function store(Request $request)
     {
-
         try {
 
             $nuevaEntrada = new Entrada();
-
             $nuevaEntrada->titulo = $request->input('titulo');
             $nuevaEntrada->descripcion = $request->input('descripcion');
             $nuevaEntrada->contenido = $request->input('contenido');
-            $nuevaEntrada->categoria_id = $request->input('categoria_id');
 
             if ($request->hasFile('imagen')) {
-                $rutaImagen = $request->file('imagen')->store('imagenes', 'public');
-                $nuevaEntrada->imagen = $rutaImagen;
+                $imagen = $request->file('imagen');
+                $nombreImagen = time() . '' . preg_replace('/\s+/', '', $imagen->getClientOriginalName());
+                $rutaImagen = $imagen->storeAs('public/imagenes', $nombreImagen);
+
+
             }
+            $nuevaEntrada->categoria_id = $request->input('categoria_id');
             $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
             $nuevaEntrada->estado = $request->input('estado');
-            $nuevaEntrada->usuario_id = auth()->id();
+            $nuevaEntrada->usuario_id = 1;
             $nuevaEntrada->save();
 
             return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
@@ -57,7 +56,12 @@ class EntradaController extends Controller
 
             return redirect()->back()->withErrors('Error al crear la entrada. Por favor, inténtalo de nuevo.');
         }
+
+
+
     }
+
+
 
 
 
@@ -81,11 +85,11 @@ class EntradaController extends Controller
             $entrada = Entrada::where('id', $idEntrada)->first();
             $entrada->update($validated);
 
-                return redirect()->route('entrada.form')->with('success', 'Entrada Actualizadp exitosamente.');
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors('Error . Por favor, inténtalo de nuevo.');
+            return redirect()->route('entrada.form')->with('success', 'Entrada Actualizadp exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Error . Por favor, inténtalo de nuevo.');
 
-            }
+        }
 
     }
     public function destroy($id)
