@@ -39,7 +39,7 @@
 
             <div class="mb-3">
                 <label for="contenido" class="form-label">Contenido</label>
-                <textarea id="contenido" name="contenido" class="form-control" rows="5" placeholder="Escribe el contenido aquí" required>{{ old('contenido') }}</textarea>
+                <textarea id="contenido" name="contenido" class="form-control" rows="5" placeholder="Escribe el contenido aquí" required>{{ $entrada->contenido }}</textarea>
                 @error('contenido')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
