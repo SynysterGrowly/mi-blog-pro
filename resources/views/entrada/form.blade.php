@@ -37,17 +37,16 @@
             </div>
 
             <div class="mb-3">
-                <label for="descripcion" class="form-label">Descripción</label>
-                <textarea id="descripcion" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" rows="5" placeholder="Escribe una breve descripción" required>{{ old('descripcion') }}</textarea>
-                @error('descripcion')
+                <label for="contenido" class="form-label">Contenido</label>
+                <textarea id="contenido" name="contenido" class="form-control" rows="5" placeholder="Escribe el contenido aquí" required>{{ old('contenido') }}</textarea>
+                @error('contenido')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
-            
             <div class="mb-3">
                 <label for="imagen" class="form-label">Imagen</label>
-                <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
+                <input type="file" id="imagen" name="imagen" class="form-control w-50" accept="image/*">
 
                 @error('imagen')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -68,7 +67,7 @@
 
             <div class="mb-3">
                 <label for="fecha_publicacion" class="form-label">Fecha de Publicación</label>
-                <input type="date" id="fecha_publicacion" name="fecha_publicacion" class="form-control" value="{{ old('fecha_publicacion') }}" required>
+                <input type="date" id="fecha_publicacion" name="fecha_publicacion" class="form-control w-50" value="{{ old('fecha_publicacion') }}" required>
                 @error('fecha_publicacion')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -76,7 +75,7 @@
 
             <div class="mb-3">
                 <label for="estado" class="form-label">Estado</label>
-                <select id="estado" name="estado" class="form-select" required>
+                <select id="estado" name="estado" class="form-select w-50" required>
                     <option value="proceso" {{ old('estado') == 'proceso' ? 'selected' : '' }}>Proceso</option>
                     <option value="finalizado" {{ old('estado') == 'finalizado' ? 'selected' : '' }}>Finalizado</option>
                 </select>
