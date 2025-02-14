@@ -50,7 +50,7 @@ class EntradaController extends Controller
 
             $entrada->save();
 
-            return redirect()->route('entrada.form')->with('success', 'Entrada actualizada exitosamente.');
+            return redirect()->route('entrada.edit', $idEntrada)->with('success', 'Entrada actualizada exitosamente.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors('Error. Por favor, inténtalo de nuevo.');
         }
