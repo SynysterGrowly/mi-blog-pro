@@ -10,6 +10,7 @@ class CategoryController extends Controller
 
 
 {
+
     public function form()
     {
         return view('categorias.form');
