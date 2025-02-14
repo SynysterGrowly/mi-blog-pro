@@ -14,20 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <style>
-        /* Asegurar que las imágenes no se desborden */
-        img {
-            max-width: 100px;
-            height: auto;
-            display: block;
-        }
 
-        /* Ajustar celdas para evitar desbordamientos */
-        td {
-            word-break: break-word;
-            white-space: normal;
-        }
-    </style>
 </head>
 <body>
 <div id="app">
@@ -47,8 +34,8 @@
                             CATEGORIA
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('categorias.lista')}}">Lista</a></li>
-                            <li><a class="dropdown-item" href="{{route('categorias.form')}}">Formulario</a></li>
+                            <li><a class="dropdown-item" href="{{route('categorias.lista')}}">lISTA</a></li>
+                            <li><a class="dropdown-item" href="{{route('categorias.form')}}">FORMULARIO</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -56,15 +43,22 @@
                             ENTRADAS
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('entrada.lista')}}">Lista</a></li>
-                            <li><a class="dropdown-item" href="{{route('entrada.form')}}">Formulario</a></li>
+                            <li><a class="dropdown-item" href="{{route('entrada.lista')}}">lISTA</a></li>
+                            <li><a class="dropdown-item" href="{{route('entrada.form')}}">FORMULARIO</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav me-auto">
+
+                </ul>
+
+                <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -79,7 +73,7 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -101,19 +95,18 @@
         </div>
     </nav>
 
-    <main class="py-3">
-        <div class="container-fluid">
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+    <main class="py-4">
 
-            @yield('content')
-        </div>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @yield('content')
     </main>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>
