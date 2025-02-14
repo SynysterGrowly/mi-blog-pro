@@ -26,13 +26,11 @@ class EntradaController extends Controller
     }
 
     public function update(Request $request, $idEntrada)
-
     {
         $validated = $request->validate([
             'titulo' => 'required|string|max:255',
             'descripcion' => 'nullable|string|max:500',
             'contenido' => 'nullable|string|max:500',
-            'imagen'=> 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'categoria_id' => 'nullable|integer',
             'fecha_publicacion' => 'nullable|date',
             'estado' => 'nullable|string|max:500',
@@ -40,18 +38,25 @@ class EntradaController extends Controller
 
         ]);
 
-        try{
+        try {
+            $entrada = Entrada::findOrFail($idEntrada);
 
-            $entrada = Entrada::where('id', $idEntrada)->first();
-            $entrada->update($validated);
+            $entrada->fill($validated);
 
-            return redirect()->route('entrada.form')->with('success', 'Entrada Actualizadp exitosamente.');
+            if ($request->hasFile('imagen')) {
+                $imagenPath = $request->file('imagen')->store('imagenes', 'public');
+                $entrada->imagen = $imagenPath;
+            }
+
+            $entrada->save();
+
+            return redirect()->route('entrada.form')->with('success', 'Entrada actualizada exitosamente.');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Error . Por favor, inténtalo de nuevo.');
-
+            return redirect()->back()->withErrors('Error. Por favor, inténtalo de nuevo.');
         }
-
     }
+
+
     public function store(Request $request)
     {
 
