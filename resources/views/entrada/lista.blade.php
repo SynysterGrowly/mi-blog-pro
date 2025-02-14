@@ -6,11 +6,6 @@
     <div class="container mt-4">
         <h1 class="mb-4">Lista de Entradas</h1>
 
-        @if (session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
 
         <div class="card shadow-sm">
             <div class="card-body">
@@ -62,4 +57,3 @@
         </div>
     </div>
 @endsection
-

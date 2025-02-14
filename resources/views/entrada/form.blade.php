@@ -6,16 +6,6 @@
     <div class="container">
         <h1>Formulario de Entradas</h1>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
 
         <form method="POST" action="{{ route('entrada.store') }}" enctype="multipart/form-data">
             @csrf

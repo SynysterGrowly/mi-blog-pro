@@ -3,18 +3,8 @@
 @section('title', 'Editar Entrada')
 
 @section('content')
-    <div class="container">
-        <h1>Editar Entrada</h1>
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    <div class="container mt-4">
+        <h1 class="mb-4">Editar Entrada</h1>
 
         <form method="POST" action="{{ route('entrada.update', $entrada->id) }}" enctype="multipart/form-data">
             @csrf
