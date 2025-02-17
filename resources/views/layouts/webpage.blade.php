@@ -16,6 +16,7 @@
     <link href="{{asset('webpage/images/favicon.png')}}" rel="shortcut icon" type="image/x-icon"/>
     <link href="{{asset('webpage/images/webclip.png')}}" rel="apple-touch-icon"/>
 
+
 </head>
 <body>
 <div class="header">
@@ -23,11 +24,11 @@
         <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header-inner w-nav">
             <a href="index.html" aria-current="page" class="logo w-inline-block w--current"><img src="images/logo.png" alt="" class="logo-img" /></a>
             <nav role="navigation" class="main-menu w-nav-menu">
-                <a href="index.html" aria-current="page" class="menu-item w-nav-link w--current">Home</a>
-                <a href="about.html" class="menu-item w-nav-link">About</a>
+                <a href="index.html" aria-current="page" class="menu-item w-nav-link w--current">Inicio</a>
+
                 <a href="categories.html" class="menu-item w-nav-link">categories</a>
                 <a href="blog.html" class="menu-item w-nav-link">posts</a>
-                <a href="contact.html" class="menu-item w-nav-link">contact</a>
+
             </nav>
             <div class="menu-button w-nav-button">
                 <div class="icon w-icon-nav-menu"></div>

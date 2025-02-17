@@ -35,3 +35,6 @@ Route::delete('/entrada/destroy/{idEntrada}', [EntradaController::class, 'destro
 
 //Pagina WEB
 Route::get('/', [WebPageController::class, 'principal'])->name('web-page.principal') ;
+
+
+
