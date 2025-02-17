@@ -3,13 +3,14 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PracticaController;
+use App\Http\Controllers\WebPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EntradaController;
 
 
 
-Route::get('/', [PracticaController::class, 'index'])->name('practica.index');
+//Route::get('/', [PracticaController::class, 'index'])->name('practica.index');
 
 Auth::routes();
 
@@ -31,4 +32,5 @@ Route::patch('/entrada/update/{idEntrada}', [EntradaController::class, 'update']
 Route::delete('/entrada/destroy/{idEntrada}', [EntradaController::class, 'destroy'])->name('entrada.destroy');
 
 
-
+//Pagina WEB
+Route::get('/', [WebPageController::class, 'principal'])->name('web-page.principal') ;
