@@ -34,7 +34,7 @@
                             CATEGORIA
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('categorias.lista')}}">lISTA</a></li>
+                            <li><a class="dropdown-item" href="{{route('categorias.lista')}}">LISTA</a></li>
                             <li><a class="dropdown-item" href="{{route('categorias.form')}}">FORMULARIO</a></li>
                         </ul>
                     </li>
@@ -43,11 +43,14 @@
                             ENTRADAS
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('entrada.lista')}}">lISTA</a></li>
+                            <li><a class="dropdown-item" href="{{route('entrada.lista')}}">LISTA</a></li>
                             <li><a class="dropdown-item" href="{{route('entrada.form')}}">FORMULARIO</a></li>
                         </ul>
                     </li>
+
                 </ul>
+
+
             </div>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">

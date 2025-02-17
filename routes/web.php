@@ -11,6 +11,7 @@ use App\Http\Controllers\EntradaController;
 
 Route::get('/', [PracticaController::class, 'index'])->name('practica.index');
 
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
