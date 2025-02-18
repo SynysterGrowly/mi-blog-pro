@@ -1,38 +1,57 @@
-@extends('layouts.webpage')
+@extends('layouts.app')
 
-@section('pagina')
-    <section class="blog-section">
-        <div class="w-layout-blockcontainer main-container w-container">
-            <div class="blog-list-wrapper w-dyn-list">
-                <div role="list" class="blog-list w-dyn-items">
+@section('title', 'Lista de Categorias')
+
+@section('content')
+    <div class="container mt-4">
+        <h1 class="mb-4">Lista de Categorias</h1>
+
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Descripción</th>
+
+                        <th scope="col" class="text-center">Editar</th>
+                        <th scope="col" class="text-center">Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     @foreach ($categorias as $categoria)
-                        @php
-                            $imagenesCategorias = [
-                                'Michinina' => 'asset/totoro.jpg',
-                                'Fantasia' => 'asset/nature.jpg',
-                                'Terror' => 'asset/pets.jpg',
-                                'Romance' => 'asset/sports.jpg',
-                                'La novela' => 'asset/tech.jpg',
-                                'miedo' => 'asset/travel.jpg',
+                        <tr>
+                            <td>
+                                @if ($categoria->imagen)
+                                    <img src="{{ asset('storage/' . $categoria->imagen) }}"
+                                         alt="Imagen de {{ $categoria->titulo }}" width="100">
+                                @else
+                                    <span>Sin imagen</span>
+                                @endif
+                            </td>
+                            <td>{{ $categoria->nombre }}</td>
+                            <td>{{ $categoria->descripcion }}</td>
 
-                            ];
-                            $imagen = $imagenesCategorias[$categoria->nombre] ?? 'asset/pokemon.jpg';
-                        @endphp
-
-                        <div role="listitem" class="w-dyn-item">
-                            <a href="{{ url('categoria/' . $categoria->id) }}" class="blog-list-item w-inline-block">
-                                <img src="{{ asset($imagen) }}" alt="{{ $categoria->nombre }}" class="blog-main-image">
-                                <div class="blog-meta">
-                                    <div class="category-text-style">{{ $categoria->nombre }}</div>
-                                    <div class="reading-time">5 min Read</div>
-                                    <img src="{{ asset('images/arrow.png') }}" style="opacity: 0;" alt="" class="blog-meta-arrow" />
-                                </div>
-                                <h4 class="main-blog-title">{{ $categoria->descripcion }}</h4>
-                            </a>
-                        </div>
+                            <td class="text-center">
+                                <a href="{{ route('entrada.edit', $categoria->id) }}" class="btn btn-warning btn-sm">
+                                    Editar
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST"
+                                      onsubmit="return confirm('¿Estás seguro de eliminar esta entrada?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
+    </div>
 @endsection

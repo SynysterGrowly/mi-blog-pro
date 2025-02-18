@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('categorias.store') }}">
+    <form method="POST" action="{{ route('categorias.store') }}" enctype="multipart/form-data">
         @csrf
 
 
@@ -35,6 +35,14 @@
             <textarea class="form-control" id="descripcion" name="descripcion" rows="5" placeholder="Escribe una breve descripción de la categoría" required>{{ old('descripcion') }}</textarea>
             @error('descripcion')
             <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input type="file" id="imagen" name="imagen" class="form-control w-50" accept="image/*">
+
+            @error('imagen')
+            <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 

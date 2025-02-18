@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-    <title>Frennzy - Blog Template</title>
+    <title>Suemy - Mi blog</title>
 
     <link href="{{asset('webpage/css/normalize.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('webpage/css/layout.css')}}" rel="stylesheet" type="text/css"/>
@@ -26,8 +26,8 @@
             <nav role="navigation" class="main-menu w-nav-menu">
                 <a href="index.html" aria-current="page" class="menu-item w-nav-link w--current">Inicio</a>
 
-                <a href="{{ route('categorias.lista') }}" class="menu-item w-nav-link">Categorias</a>
-                <a href="{{ route('entrada.form') }}" class="menu-item w-nav-link">Post</a>
+                <a href="#" class="menu-item w-nav-link">Categorias</a>
+                <a href="#" class="menu-item w-nav-link">Post</a>
 
             </nav>
             <div class="menu-button w-nav-button">
