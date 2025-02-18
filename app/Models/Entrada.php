@@ -16,5 +16,4 @@ class Entrada extends Model
     protected $guarded = [];
 
     protected $fillable = ['titulo', 'descripcion' ,'contenido', 'imagen' ,'categoria_id', 'fecha_publicacion','estado','usuario_id' ];
-public $timestamps = false;
 }
