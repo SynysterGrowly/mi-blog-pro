@@ -1,54 +1,38 @@
 @extends('layouts.webpage')
 
-@section('title', 'Categoría de Listas')
+@section('pagina')
+    <section class="blog-section">
+        <div class="w-layout-blockcontainer main-container w-container">
+            <div class="blog-list-wrapper w-dyn-list">
+                <div role="list" class="blog-list w-dyn-items">
+                    @foreach ($categorias as $categoria)
+                        @php
+                            $imagenesCategorias = [
+                                'Michinina' => 'asset/totoro.jpg',
+                                'Fantasia' => 'asset/nature.jpg',
+                                'Terror' => 'asset/pets.jpg',
+                                'Romance' => 'asset/sports.jpg',
+                                'La novela' => 'asset/tech.jpg',
+                                'miedo' => 'asset/travel.jpg',
 
-@section('content')
+                            ];
+                            $imagen = $imagenesCategorias[$categoria->nombre] ?? 'asset/pokemon.jpg';
+                        @endphp
 
-    <div class="container mt-4">
-        <h1 class="mb-4">Lista de Categorías</h1>
-
-        @if(session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <table class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col" class="text-center">Editar</th>
-                        <th scope="col" class="text-center">Eliminar</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    @foreach($categorias as $categoria)
-                        <tr>
-                            <td>{{ $categoria->nombre }}</td>
-                            <td>{{ $categoria->descripcion }}</td>
-                            <td class="text-center">
-                                <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-warning btn-sm">
-                                    Editar
-                                </a>
-                            </td>
-
-                            <td class="text-center">
-                                <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar esta categoría?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                </form>
-                            </td>
-                        </tr>
+                        <div role="listitem" class="w-dyn-item">
+                            <a href="{{ url('categoria/' . $categoria->id) }}" class="blog-list-item w-inline-block">
+                                <img src="{{ asset($imagen) }}" alt="{{ $categoria->nombre }}" class="blog-main-image">
+                                <div class="blog-meta">
+                                    <div class="category-text-style">{{ $categoria->nombre }}</div>
+                                    <div class="reading-time">5 min Read</div>
+                                    <img src="{{ asset('images/arrow.png') }}" style="opacity: 0;" alt="" class="blog-meta-arrow" />
+                                </div>
+                                <h4 class="main-blog-title">{{ $categoria->descripcion }}</h4>
+                            </a>
+                        </div>
                     @endforeach
-                    </tbody>
-                </table>
+                </div>
             </div>
         </div>
-    </div>
-
+    </section>
 @endsection

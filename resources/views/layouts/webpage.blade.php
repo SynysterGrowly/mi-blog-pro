@@ -22,12 +22,12 @@
 <div class="header">
     <div class="w-layout-blockcontainer main-container w-container">
         <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header-inner w-nav">
-            <a href="index.html" aria-current="page" class="logo w-inline-block w--current"><img src="images/logo.png" alt="" class="logo-img" /></a>
+            <a href="index.html" aria-current="page" class="logo w-inline-block w--current"><img src="{{ asset('webpage/images/logo.png') }}" alt="" class="logo-img" /></a>
             <nav role="navigation" class="main-menu w-nav-menu">
                 <a href="index.html" aria-current="page" class="menu-item w-nav-link w--current">Inicio</a>
 
-                <a href="categories.html" class="menu-item w-nav-link">categories</a>
-                <a href="blog.html" class="menu-item w-nav-link">posts</a>
+                <a href="{{ route('categorias.lista') }}" class="menu-item w-nav-link">Categorias</a>
+                <a href="{{ route('entrada.form') }}" class="menu-item w-nav-link">Post</a>
 
             </nav>
             <div class="menu-button w-nav-button">
@@ -37,7 +37,7 @@
             <div class="header-right-side">
                 <form action="#" class="search-div w-form">
                     <input class="search-field w-input" maxlength="256" name="query" placeholder="type something" type="search" id="search" required="" /><input type="submit" class="search-button w-button" value="Search" />
-                    <img src="images/search.png" alt="" class="image" />
+                    <img src="{{ asset('webpage/images/search.png') }}" alt="" class="image" />
                 </form>
             </div>
         </div>
@@ -55,11 +55,11 @@
                 <div id="frenzy107" class="w-layout-cell footer-grid-item">
                     <h4 class="footer-heading">contact</h4>
                     <a href="mailto:test@gmail.com?subject=Your%20Mail" class="footer-email-and-phone w-inline-block">
-                        <img src="images/email.png" alt="" class="footer-emailphone-icon"/>
+                        <img src="{{ asset('webpage/images/email.png') }}" alt="" class="footer-emailphone-icon"/>
                         <div class="text-block">hello@frenzy.webflow.io</div>
                     </a>
                     <a href="tel:+1231685496" class="footer-email-and-phone last-phone w-inline-block">
-                        <img src="images/phone.png" alt="" class="footer-emailphone-icon"/>
+                        <img src="{{ asset('webpage/images/phone.png') }}" alt="" class="footer-emailphone-icon"/>
                         <div class="text-block">+5 (123) 456 789 0</div>
                     </a>
                 </div>
@@ -68,17 +68,17 @@
                     <h4 class="footer-heading">socials</h4>
                     <div class="foot-socials">
                         <a href="http://www.facebook.com" target="_blank" class="social-link w-inline-block"><img
-                                src="images/fb.png" alt="" class="foot-social-link"/></a>
+                                src="{{ asset('webpage/images/fb.png') }}" alt="" class="foot-social-link"/></a>
                         <a href="http://www.twitter.com" target="_blank" class="social-link w-inline-block"><img
-                                src="images/twitter.png" alt="" class="foot-social-link"/></a>
+                                src="{{ asset('webpage/images/twitter.png') }}" alt="" class="foot-social-link"/></a>
                         <a id="frenzy106" href="http://www.instagram.com" target="_blank"
                            class="social-link w-inline-block">
-                            <img src="images/insta.png" alt="" class="foot-social-link"/>
+                            <img src="{{ asset('webpage/images/insta.png') }}" alt="" class="foot-social-link"/>
                         </a>
                         <a href="http://www.youtube.com" target="_blank" class="social-link w-inline-block"><img
-                                src="images/you.png" alt="" class="foot-social-link"/></a>
+                                src="{{ asset('webpage/images/you.png') }}" alt="" class="foot-social-link"/></a>
                         <a href="http://www.pinterest.com" target="_blank" class="social-link w-inline-block"><img
-                                src="images/pint.png" alt="" class="foot-social-link"/></a>
+                                src="{{ asset('webpage/images/pint.png') }}" alt="" class="foot-social-link"/></a>
                     </div>
                 </div>
 

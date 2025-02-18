@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('estado', ['proceso', 'finalizado'])->default('proceso');
             $table->foreignId('categoria_id')->constrained('categorias');
             $table->foreignId('usuario_id')->constrained('users')->onDelete('cascade');
+            $table->timestamps();
 
 
 

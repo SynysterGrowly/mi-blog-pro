@@ -8,20 +8,14 @@ use Illuminate\Http\Request;
 
 class WebPageController extends Controller
 {
-
     public function principal()
     {
-        $Categories = Category::all();
 
-        return view('webpage.principal');
-    }
+        $categoriasFijas = Category::all();
 
-    public function categoriaData()
-    {
+        $ultimasEntradas = Entrada::orderBy('created_at', 'desc')->take(4)->get();
 
-        $categoriasFijas = Category::orderBy('id', 'asc')->take(4)->get();
-
-        return view('webpage.principal', compact('categoriasFijas'));
+        return view('webpage.principal', compact('categoriasFijas', 'ultimasEntradas'));
     }
 
     public function entradaData($idEntrada)
