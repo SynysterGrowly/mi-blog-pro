@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class WebPageController extends Controller
 {
+
+
     public function principal()
     {
 
@@ -18,9 +20,4 @@ class WebPageController extends Controller
         return view('webpage.principal', compact('categoriasFijas', 'ultimasEntradas'));
     }
 
-    public function entradaData($idEntrada)
-    {
-        $datosEntrada = Entrada::findOrFail($idEntrada);
-        return view('webpage.entrada', compact('datosEntrada'));
-    }
 }

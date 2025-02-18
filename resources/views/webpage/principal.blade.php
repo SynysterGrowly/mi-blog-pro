@@ -10,8 +10,7 @@
             <div class="home-category-list-wrapper w-dyn-list">
                 <div role="list" class="home-category-list w-dyn-items">
 
-
-                    @foreach($categoriasFijas as $categoria)
+                    @foreach ($categoriasFijas as $categoria)
                             <div role="listitem" class="w-dyn-item">
                                 <a
                                     data-w-id="e42a7868-a1ff-3fab-a88f-530c4a479735"
@@ -20,9 +19,9 @@
                                     class="tech-category-item w-inline-block"
                                 >
                                     <img
-                                        alt=""
-                                        src="https://images.ctfassets.net/denf86kkcx7r/4IPlg4Qazd4sFRuCUHIJ1T/f6c71da7eec727babcd554d843a528b8/gatocomuneuropeo-97"
-                                        class="tech-category-image"
+                                        alt="{{ $categoria->titulo }}"
+                                        src="{{ asset('storage/' . $categoria->imagen) }}"
+                                        class="latest-blog-4-col-image"
                                     />
                                     <div class="tech-text-box">
                                         <h4 class="tech-category-heading">{{$categoria->nombre}}</h4>
@@ -43,6 +42,7 @@
             <H3>ULTIMAS ENTRADAS</H3>
             <div class="latest-blog-4-col-grid-wrapper w-dyn-list">
                 <div role="list" class="latest-blog-4-col-grid w-dyn-items">
+
                     @foreach ($ultimasEntradas as $entrada)
                         <div role="listitem" class="w-dyn-item">
                             <a

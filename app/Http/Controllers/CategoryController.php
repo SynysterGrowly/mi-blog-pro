@@ -25,18 +25,22 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string|max:500',
-        ]);
-
         try {
-            Category::create($validated);
-            return redirect()->route('categorias.lista')->with('success', 'Categoría creada exitosamente.');
 
+            $nuevaCategoria = new Category();
+            $nuevaCategoria->nombre = $request->input('nombre');
+            $nuevaCategoria->descripcion = $request->input('descripcion');
+
+            if ($request->hasFile('imagen')) {
+                $imagenPath = $request->file('imagen')->store('categorias', 'public');
+                $nuevaCategoria->imagen = $imagenPath;
+            }
+
+            $nuevaCategoria->save();
+
+            return redirect()->route('categorias.lista')->with('success', 'Categoría creada exitosamente.');
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            return redirect()->back()->withErrors('Ocurrio un error'); //Revisa porque tienes este error
+            return redirect()->back()->withErrors('Error al crear la categoría. Por favor, inténtalo de nuevo.');
         }
     }
 
@@ -53,6 +57,7 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string|max:500'
+
         ]);
 
 
