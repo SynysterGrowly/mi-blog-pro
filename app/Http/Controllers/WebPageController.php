@@ -14,10 +14,10 @@ class WebPageController extends Controller
     {
 
         $categoriasFijas = Category::all();
-
         $ultimasEntradas = Entrada::orderBy('created_at', 'desc')->take(4)->get();
+        $entradasAleatorias = Entrada::inRandomOrder()->take(3)->get();
 
-        return view('webpage.principal', compact('categoriasFijas', 'ultimasEntradas'));
+        return view('webpage.principal', compact('categoriasFijas', 'ultimasEntradas' , 'entradasAleatorias'));
     }
 
 }
