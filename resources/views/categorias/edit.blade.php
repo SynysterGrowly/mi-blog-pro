@@ -18,6 +18,7 @@
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
                 <textarea class="form-control" id="descripcion" name="descripcion" rows="5">{{ old('descripcion', $categoria->descripcion) }}</textarea>
+
             </div>
 
             <button type="submit" class="btn btn-primary">Actualizar Categoría</button>
