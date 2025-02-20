@@ -22,12 +22,11 @@
 <div class="header">
     <div class="w-layout-blockcontainer main-container w-container">
         <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header-inner w-nav">
-            <a href="index.html" aria-current="page" class="logo w-inline-block w--current"><img src="{{ asset('webpage/images/logo.png') }}" alt="" class="logo-img" /></a>
+            <a href="{{ route('web-page.principal') }}" aria-current="page" class="logo w-inline-block w--current"><img src="{{ asset('webpage/images/logo.png') }}" alt="" class="logo-img" /></a>
             <nav role="navigation" class="main-menu w-nav-menu">
-                <a href="index.html" aria-current="page" class="menu-item w-nav-link w--current">Inicio</a>
-
-                <a href="#" class="menu-item w-nav-link">Categorias</a>
-                <a href="#" class="menu-item w-nav-link">Post</a>
+                
+                <a href="{{ route('webpage.categoriaslist', ['id' => 1]) }}" class="menu-item w-nav-link">Categorías</a>
+                <a href="{{ route('webpage.entradaslist') }}" class="menu-item w-nav-link">Post</a>
 
             </nav>
             <div class="menu-button w-nav-button">

@@ -20,13 +20,21 @@ class WebPageController extends Controller
         return view('webpage.principal', compact('categoriasFijas', 'ultimasEntradas' , 'entradasAleatorias'));
     }
 
-    public function categoriasList()
+    public function verCategoria()
     {
         $categoriasFijas = Category::all();
         $ultimasEntradas = Entrada::all();
 
         return view('webpage.categoriaslist', compact('categoriasFijas', 'ultimasEntradas'));
     }
+
+    public function verEntrada()
+    {
+        $entradas = Entrada::orderBy('created_at', 'desc')->get(); // Obtener todas las entradas
+        return view('webpage.entradaslist', compact('entradas'));
+    }
+
+
 
     public function show($idEntrada)
     {

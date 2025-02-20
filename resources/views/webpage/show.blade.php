@@ -20,6 +20,16 @@
                             </p>
 
                             <p class="single-post-paragraph">
+                                <strong>Descripción:</strong> {{ $descripcion ?? 'Sin categoría' }}
+                            </p>
+
+                            <p class="single-post-paragraph">
+                                <strong>Contenido:</strong> {{ $contenido ?? 'Sin contenido' }}
+                            </p>
+
+
+
+                            <p class="single-post-paragraph">
                                 <strong>Publicado:</strong> {{ $fecha ?? 'Fecha desconocida' }}
                             </p>
 
