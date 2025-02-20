@@ -14,7 +14,7 @@
                          class="w-dyn-item">
 
                         <a data-w-id="8251edd9-9261-4de3-6c77-dd69fe9ce26a"
-                           href="{{ route('webpage.show', ['idEntrada' => $entrada->id]) }}"
+                           href="{{ route('web-page.show', ['idEntrada' => $entrada->id]) }}"
                            class="blog-list-item w-inline-block">
 
                             <img alt="{{ $entrada->titulo }}"
