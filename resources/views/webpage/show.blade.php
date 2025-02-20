@@ -16,24 +16,22 @@
                             @endif
 
                             <p class="single-post-paragraph">
-                                <strong>Categoría:</strong> {{ $categoria ?? 'Sin categoría' }}
-                            </p>
-
-                            <p class="single-post-paragraph">
-                                <strong>Descripción:</strong> {{ $descripcion ?? 'Sin categoría' }}
+                                <strong>Descripción:</strong> {{ $descripcion ?? 'Sin Descripción' }}
                             </p>
 
                             <p class="single-post-paragraph">
                                 <strong>Contenido:</strong> {{ $contenido ?? 'Sin contenido' }}
                             </p>
 
-
+                            <p class="single-post-paragraph">
+                                <strong>Categoría:</strong> {{ $categoria ?? 'Sin categoría' }}
+                            </p>
 
                             <p class="single-post-paragraph">
                                 <strong>Publicado:</strong> {{ $fecha ?? 'Fecha desconocida' }}
                             </p>
-
-                            <a href="{{ route('web-page.principal') }}" class="btn btn-secondary mt-3">Regresar</a>
+                            <br>
+                            <a href="{{ route('web-page.principal') }}" style="color: white;" class="btn social-link">Regresar</a>
                         </div>
                     </div>
                 </div>
@@ -54,6 +52,24 @@
                             </ul>
                         </div>
                     </div>
+
+
+                <div class="aside-post-wrapper">
+                    @foreach ($entradasAleatorias as $entrada)
+                        <div role="listitem" class="w-dyn-item">
+                            <a href="{{ route('web-page.show', ['idEntrada' => $entrada->id]) }}" class="aside-post w-inline-block">
+                                <h4 class="heading2">{{ $entrada->titulo }}</h4>
+                                <img src="{{ asset('storage/' . $entrada->imagen) }}" alt="{{ $entrada->titulo }}" class="aside-post-img" />
+                            </a>
+                        </div>
+                    @endforeach
+
+
+                </div>
+
+
+
+
                 </div>
             </div>
         </div>

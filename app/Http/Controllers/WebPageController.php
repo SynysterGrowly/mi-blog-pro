@@ -20,12 +20,14 @@ class WebPageController extends Controller
         return view('webpage.principal', compact('categoriasFijas', 'ultimasEntradas' , 'entradasAleatorias'));
     }
 
-    public function verCategoria()
+    public function verCategoria($idCategoria)
     {
-        $categoriasFijas = Category::all();
-        $ultimasEntradas = Entrada::all();
+        //Necesito una consulta que me traiga todas las entradas que contengan la categoria que estoy pidiendo
+        $listaDeEntradasPorCategoria = Entrada::where('categoria_id', $idCategoria)->orderBy('created_at', 'desc')->get();
+        dd($listaDeEntradasPorCategoria);
 
-        return view('webpage.categoriaslist', compact('categoriasFijas', 'ultimasEntradas'));
+
+        return view('webpage.categoriaslist', compact( 'listaDeEntradasPorCategoria'));
     }
 
     public function verEntrada()
@@ -41,7 +43,7 @@ class WebPageController extends Controller
 
         $categoriasFijas = Category::all();
         $entrada = Entrada::findOrFail($idEntrada);
-
+        $entradasAleatorias = Entrada::inRandomOrder()->take(3)->get();
 
         if (!$entrada) {
             return redirect()->route('web-page.principal')->with('error', 'Entrada no encontrada');
@@ -50,10 +52,12 @@ class WebPageController extends Controller
         return view('webpage.show', [
             'titulo' => $entrada->titulo,
             'contenido' => $entrada->contenido,
+            'descripcion' => $entrada->descripcion,
             'imagen' => $entrada->imagen,
             'categoria' => $entrada->categoriaInfo ? $entrada->categoriaInfo->nombre : 'Sin categoría', // Usar categoriaInfo()
             'fecha' => $entrada->fecha_publicacion,
             'categoriasFijas' => $categoriasFijas,
+            'entradasAleatorias' => $entradasAleatorias,
         ]);
     }
 

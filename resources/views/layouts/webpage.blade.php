@@ -24,8 +24,8 @@
         <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header-inner w-nav">
             <a href="{{ route('web-page.principal') }}" aria-current="page" class="logo w-inline-block w--current"><img src="{{ asset('webpage/images/logo.png') }}" alt="" class="logo-img" /></a>
             <nav role="navigation" class="main-menu w-nav-menu">
-                
-                <a href="{{ route('webpage.categoriaslist', ['id' => 1]) }}" class="menu-item w-nav-link">Categorías</a>
+
+                <a href="{{ route('webpage.categoriaslist', ['idCategoria' => 1]) }}" class="menu-item w-nav-link">Categorías</a>
                 <a href="{{ route('webpage.entradaslist') }}" class="menu-item w-nav-link">Post</a>
 
             </nav>
@@ -83,14 +83,12 @@
 
                 <div id="frenzy109" class="w-layout-cell footer-grid-item">
                     <h4 class="footer-heading">Newsletter</h4>
-                    <p class="footer-text">Stay ahead of the curve with our exclusive daily newsletter directly in your
-                        inbox!</p>
+
                     <div class="w-form">
                         <form id="email-form" method="post" action="#" aria-label="Form" class="form">
                             <input class="subscribe-field w-input" maxlength="256" name="email-2" data-name="Email 2"
                                    placeholder="your e-mail" type="email" id="email-2" required=""/>
-                            <input type="submit" data-wait="Please wait..." class="submit-button w-button"
-                                   value="subscribe"/>
+
                         </form>
                     </div>
                 </div>
@@ -99,8 +97,7 @@
     </div>
     <div class="w-layout-blockcontainer main-container w-container">
         <div class="copyright">
-            <div class="copyright-text">© 2024  Frenzy - HTML Template. Made by <a href="#" class="copyright-text">Max
-                    Themes</a></div>
+            <div class="copyright-text">© 2024 suemy <a href="#" class="copyright-text">M</a></div>
         </div>
     </div>
 </div>

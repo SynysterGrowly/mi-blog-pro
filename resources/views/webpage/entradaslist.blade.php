@@ -19,7 +19,7 @@
                                             {{ $entrada->categoriaInfo->nombre ?? 'Sin categoría' }}
                                         </div>
                                         <div class="reading-time">5 min Read</div>
-                                        <img src="{{ asset('images/arrow.png') }}" style="opacity: 0;" alt="" class="blog-meta-arrow" />
+                                        <img src="{{ asset('') }}" style="opacity: 0;" alt="" class="blog-meta-arrow" />
                                     </div>
                                     <h4 class="main-blog-title">{{ $entrada->titulo }}</h4>
                                 </a>

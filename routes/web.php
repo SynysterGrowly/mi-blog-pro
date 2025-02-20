@@ -36,7 +36,7 @@ Route::delete('/entrada/destroy/{idEntrada}', [EntradaController::class, 'destro
 //Pagina WEB
 Route::get('/', [WebPageController::class, 'principal'])->name('web-page.principal') ;
 Route::get('/show/{idEntrada}', [WebPageController::class, 'show'])->name('web-page.show');
-Route::get('/categorias/{id}', [WebPageController::class, 'verCategoria'])->name('webpage.categoriaslist');
+Route::get('/categorias/{idCategoria}', [WebPageController::class, 'verCategoria'])->name('webpage.categoriaslist');
 Route::get('/entradas', [WebPageController::class, 'verEntrada'])->name('webpage.entradaslist');
 
 
