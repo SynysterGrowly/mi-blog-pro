@@ -18,7 +18,7 @@ class EntradaController extends Controller
     public function lista()
     {
 
-        $entradas = Entrada::all();
+        $entradas = Entrada::orderBy('created_at', 'asc')->take(4)->get();
 
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Entrada;
 
 
 class CategoryController extends Controller
@@ -17,7 +19,7 @@ class CategoryController extends Controller
     }
     public function lista()
     {
-        $categorias = Category::all();
+        $categorias = Category::orderBy('created_at', 'asc')->take(4)->get();
 
         return view('categorias.lista', compact('categorias'));
     }
@@ -52,35 +54,41 @@ class CategoryController extends Controller
     }
 
 
-    public function update(Request $request , $idCategoria)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $request->validate([
             'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string|max:500'
-
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048' // Opcional, solo si el usuario sube una imagen
         ]);
 
+        $categoria = Category::findOrFail($id);
+        $categoria->nombre = $request->nombre;
 
-        try {
-            $categoria = Category::where('id', $idCategoria)->first();
-            $categoria->update($validated);
+        // Verificar si el usuario subió una nueva imagen
+        if ($request->hasFile('imagen')) {
+            // Borrar imagen anterior
+            if ($categoria->imagen) {
+                Storage::delete('public/'.$categoria->imagen);
+            }
 
-            return redirect()->route('categorias.form')->with('success', 'Categoría Actualizadp exitosamente.');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Error . Por favor, inténtalo de nuevo.');
-
+            // Guardar
+            $imagenPath = $request->file('imagen')->store('imagenes_categorias', 'public');
+            $categoria->imagen = $imagenPath;
         }
+
+
+        $categoria->save();
+
+
+        return redirect()->route('categorias.edit', $categoria->id)->with('success', 'Categoría actualizada correctamente');
     }
 
     public function destroy($idCategoria)
     {
-
         $categoria = Category::findOrFail($idCategoria);
         $categoria->delete();
         return redirect()->route('categorias.lista')->with('success', 'Categoría eliminada exitosamente.');
     }
-
-
 
 
 

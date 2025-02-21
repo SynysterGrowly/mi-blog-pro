@@ -14,4 +14,9 @@ class Category extends Model
 
 
     protected $fillable = ['nombre', 'descripcion', 'imagen'];
+
+    public function entradas()
+    {
+        return $this->hasmany(Entrada::class, 'categoria_id');
+    }
 }

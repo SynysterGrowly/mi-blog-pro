@@ -20,23 +20,43 @@ class WebPageController extends Controller
         return view('webpage.principal', compact('categoriasFijas', 'ultimasEntradas' , 'entradasAleatorias'));
     }
 
-    public function verCategoria($idCategoria)
+    public function verCategoria($idCategoria = null)
     {
-        //Necesito una consulta que me traiga todas las entradas que contengan la categoria que estoy pidiendo
-        $listaDeEntradasPorCategoria = Entrada::where('categoria_id', $idCategoria)->orderBy('created_at', 'desc')->get();
-        dd($listaDeEntradasPorCategoria);
+        // Obtener todas las categorías disponibles
+        $categoriasDisponibles = Category::all();
 
+        if ($idCategoria) {
+            $categoriaSeleccionada = Category::findOrFail($idCategoria);
+            $entradasFiltradas = Entrada::where('categoria_id', $idCategoria)
+                ->where('estado', 'finalizado')
+                ->with('categoriaInfo')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        } else {
+            $categoriaSeleccionada = null;
+            $entradasFiltradas = collect(); // Colección vacía si no hay categoría seleccionada
+        }
 
-        return view('webpage.categoriaslist', compact( 'listaDeEntradasPorCategoria'));
+        return view('webpage.categoriaslist', compact('categoriasDisponibles', 'categoriaSeleccionada', 'entradasFiltradas'));
     }
 
     public function verEntrada()
     {
-        $entradas = Entrada::orderBy('created_at', 'desc')->get(); // Obtener todas las entradas
+        // Obtener todas las entradas con su categoría
+        $entradas = Entrada::with('categoriaInfo')->orderBy('created_at', 'desc')->get();
+
         return view('webpage.entradaslist', compact('entradas'));
     }
 
 
+    public function mostrarTodasLasCategorias()
+    {
+        {
+            $categoriasFijas = Category::all();
+
+            return view('webpage.categoriasPrincipal', compact('categoriasFijas'));
+        }
+    }
 
     public function show($idEntrada)
     {

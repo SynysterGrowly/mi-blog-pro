@@ -25,7 +25,7 @@
             <a href="{{ route('web-page.principal') }}" aria-current="page" class="logo w-inline-block w--current"><img src="{{ asset('webpage/images/logo.png') }}" alt="" class="logo-img" /></a>
             <nav role="navigation" class="main-menu w-nav-menu">
 
-                <a href="{{ route('webpage.categoriaslist', ['idCategoria' => 1]) }}" class="menu-item w-nav-link">Categorías</a>
+                <a href="{{ route('webpage.categoriasPrincipal') }}" class="menu-item w-nav-link">Categorías</a>
                 <a href="{{ route('webpage.entradaslist') }}" class="menu-item w-nav-link">Post</a>
 
             </nav>

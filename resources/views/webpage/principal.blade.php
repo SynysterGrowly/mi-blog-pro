@@ -9,11 +9,14 @@
                 <div role="list" class="home-category-list w-dyn-items">
                     @foreach ($categoriasFijas as $categoria)
                         <div role="listitem" class="w-dyn-item">
+
                             <a href="{{ route('webpage.categoriaslist', ['idCategoria' => $categoria->id]) }}"
                                class="tech-category-item w-inline-block">
+
                                 <img alt="{{ $categoria->nombre }}"
                                      src="{{ asset('storage/' . $categoria->imagen) }}"
                                      class="latest-blog-4-col-image" />
+
                                 <div class="tech-text-box">
                                     <h4 class="tech-category-heading">{{ $categoria->nombre }}</h4>
                                     <div class="tech-category-time">{{ $categoria->created_at }}</div>
