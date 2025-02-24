@@ -19,7 +19,7 @@ class CategoryController extends Controller
     }
     public function lista()
     {
-        $categorias = Category::orderBy('created_at', 'asc')->take(4)->get();
+        $categorias = Category::orderBy('created_at', 'desc')->get();
 
         return view('categorias.lista', compact('categorias'));
     }

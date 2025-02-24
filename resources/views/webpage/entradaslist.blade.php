@@ -8,7 +8,7 @@
 
             <div class="category-header">
                 <h3 class="category-title">
-                    {{ $entradas->first()->categoriaInfo->nombre ?? 'Todas las categorías' }}
+                    Todas las entradas
                 </h3>
             </div>
 

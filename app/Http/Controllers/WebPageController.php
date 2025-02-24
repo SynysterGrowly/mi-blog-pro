@@ -42,9 +42,11 @@ class WebPageController extends Controller
 
     public function verEntrada()
     {
-        // Obtener todas las entradas con su categoría
-        $entradas = Entrada::with('categoriaInfo')->orderBy('created_at', 'desc')->get();
-
+        // where para llamar solo los finalizados
+        $entradas = Entrada::with('categoriaInfo')
+            ->where('estado', 'finalizado')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('webpage.entradaslist', compact('entradas'));
     }
 
