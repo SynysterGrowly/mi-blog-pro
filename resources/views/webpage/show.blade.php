@@ -44,7 +44,7 @@
                             <ul class="category-list">
                                 @foreach($categoriasFijas as $categoria)
                                     <li>
-                                        <a href="">
+                                        <a href=" {{ route('webpage.categoriaslist', ['idCategoria' => $categoria->id]) }}">
                                             {{ $categoria->nombre }}
                                         </a>
                                     </li>
