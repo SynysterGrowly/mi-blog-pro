@@ -85,7 +85,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             tinymce.init({
-                selector: 'textarea#titulo, textarea#descripcion, textarea#contenido',
+                selector: 'textarea#contenido', // Solo se aplica a "contenido"
                 plugins: 'advlist autolink lists link image charmap preview anchor',
                 toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
                 menubar: false,

@@ -39,10 +39,10 @@ class EntradaController extends Controller
         try {
             $entrada = Entrada::findOrFail($idEntrada);
 
-            // Permitir etiquetas HTML
-            $entrada->titulo = strip_tags($request->titulo, '<p><b><i><strong><em><ul><ol><li><br>');
-            $entrada->descripcion = strip_tags($request->descripcion, '<p><b><i><strong><em><ul><ol><li><br>');
-            $entrada->contenido = strip_tags($request->contenido, '<p><b><i><strong><em><ul><ol><li><br>');
+
+            $entrada->titulo = strip_tags($request->titulo);
+            $entrada->descripcion = strip_tags($request->descripcion);
+            $entrada->contenido = $request->contenido;
 
             $entrada->categoria_id = $request->categoria_id;
             $entrada->fecha_publicacion = $request->fecha_publicacion;

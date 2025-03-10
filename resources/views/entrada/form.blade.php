@@ -9,26 +9,27 @@
         <script src="https://cdn.tiny.cloud/1/ti67oyb3b0lqpoji4pvw9pr9zxmwguovh1yz60a1yh8ucb26/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
         <script>
-            tinymce.init({
-                selector: 'textarea#titulo, textarea#descripcion, textarea#contenido', // Aplica a los 3 campos
-                plugins: 'advlist autolink lists link image charmap preview anchor',
-                toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
-                menubar: false,
-                height: 300,
-                branding: false,
-                setup: function (editor) {
-                    editor.on('change', function () {
-                        editor.save(); // Forzar que el contenido del textarea se actualice antes de enviarlo
-                    });
-                }
+            document.addEventListener("DOMContentLoaded", function() {
+                tinymce.init({
+                    selector: 'textarea#contenido', // Solo se aplica a "contenido"
+                    plugins: 'advlist autolink lists link image charmap preview anchor',
+                    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
+                    menubar: false,
+                    height: 300,
+                    branding: false,
+                    setup: function (editor) {
+                        editor.on('change', function () {
+                            editor.save();
+                        });
+                    }
+                });
             });
         </script>
 
 
         <form method="POST" action="{{ route('entrada.store') }}" enctype="multipart/form-data">
             @csrf
-            <form method="POST" action="{{ route('entrada.store') }}" enctype="multipart/form-data">
-                @csrf
+
 
                 <div class="mb-3">
                     <label for="titulo" class="form-label">Título</label>
