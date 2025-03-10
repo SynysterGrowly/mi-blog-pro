@@ -15,11 +15,15 @@
 
                                 <!-- Imagen de la categoría -->
                                 <img alt="{{ $categoria->nombre }}"
-                                     src="{{ asset('storage/' . $categoria->imagen) }}"
-                                     class="blog-category-main-image" />
+                                     src="{{ $categoria->imagen ? asset('storage/' . $categoria->imagen) : asset('images/default.jpg') }}"
+                                     class="blog-category-main-image"
+                                     loading="lazy" />
 
                                 <div class="gradient-overlay"></div>
-                                <div class="category-name">{{ $categoria->nombre }}</div>
+
+                                <!-- Nombre de la categoría con el formato ya con html -->
+                                <div class="category-name">{!! $categoria->nombre !!}</div>
+
                                 <img src="{{ asset('images/readmore.png') }}"
                                      style="opacity: 0; transform: translate3d(0px, 60%, 0px) scale3d(1, 1, 1);"
                                      alt="" class="blog-arrow" />

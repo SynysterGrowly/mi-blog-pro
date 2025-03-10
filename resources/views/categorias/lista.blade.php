@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Lista de Categorias')
+@section('title', 'Lista de Categorías')
 
 @section('content')
     <div class="container mt-4">
-        <h1 class="mb-4">Lista de Categorias</h1>
-
+        <h1 class="mb-4">Lista de Categorías</h1>
 
         <div class="card shadow-sm">
             <div class="card-body">
@@ -15,7 +14,6 @@
                         <th scope="col">Imagen</th>
                         <th scope="col">Título</th>
                         <th scope="col">Descripción</th>
-
                         <th scope="col" class="text-center">Editar</th>
                         <th scope="col" class="text-center">Eliminar</th>
                     </tr>
@@ -26,13 +24,13 @@
                             <td>
                                 @if ($categoria->imagen)
                                     <img src="{{ asset('storage/' . $categoria->imagen) }}"
-                                         alt="Imagen de {{ $categoria->titulo }}" width="100">
+                                         alt="Imagen de {{ $categoria->nombre }}" width="100">
                                 @else
                                     <span>Sin imagen</span>
                                 @endif
                             </td>
-                            <td>{{ $categoria->nombre }}</td>
-                            <td>{{ $categoria->descripcion }}</td>
+                            <td>{!! $categoria->nombre !!}</td>  <!-- Se permite HTML en el nombre -->
+                            <td>{!! $categoria->descripcion !!}</td>  <!-- Se permite HTML en la descripción -->
 
                             <td class="text-center">
                                 <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-warning btn-sm">
@@ -54,4 +52,5 @@
             </div>
         </div>
     </div>
+
 @endsection

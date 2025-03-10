@@ -3,6 +3,7 @@
 @section('title', 'Editar Entrada')
 
 @section('content')
+
     <div class="container mt-4">
         <h1 class="mb-4">Editar Entrada</h1>
 
@@ -10,25 +11,28 @@
             @csrf
             @method('PATCH')
 
+
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
-                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Escribe el título" value="{{ $entrada->titulo }}" required>
+                <textarea id="titulo" name="titulo" class="form-control" rows="2" required>{!! $entrada->titulo !!}</textarea>
                 @error('titulo')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
+
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <textarea id="descripcion" name="descripcion" class="form-control" rows="5" placeholder="Escribe una breve descripción" required>{{ $entrada->descripcion }}</textarea>
+                <textarea id="descripcion" name="descripcion" class="form-control" rows="5" required>{!! $entrada->descripcion !!}</textarea>
                 @error('descripcion')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
+
             <div class="mb-3">
                 <label for="contenido" class="form-label">Contenido</label>
-                <textarea id="contenido" name="contenido" class="form-control" rows="5" placeholder="Escribe el contenido aquí" required>{{ $entrada->contenido }}</textarea>
+                <textarea id="contenido" name="contenido" class="form-control" rows="5" required>{!! $entrada->contenido !!}</textarea>
                 @error('contenido')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -36,6 +40,7 @@
 
             @if ($entrada->imagen)
                 <div>
+                    <label class="form-label">Imagen Actual:</label>
                     <img src="{{ asset('storage/'.$entrada->imagen) }}" alt="Imagen actual" width="150">
                 </div>
             @endif
@@ -65,7 +70,6 @@
                 </select>
             </div>
 
-
             <div class="mb-3">
                 <label for="fecha_creacion" class="form-label">Fecha de Creación</label>
                 <input type="text" id="fecha_creacion" name="fecha_creacion" class="form-control w-50" value="{{ $entrada->created_at->format('d/m/Y H:i') }}" readonly>
@@ -74,7 +78,28 @@
             <button type="submit" class="btn btn-danger">GUARDAR</button>
         </form>
     </div>
-@endsection
 
+
+    <script src="https://cdn.tiny.cloud/1/ti67oyb3b0lqpoji4pvw9pr9zxmwguovh1yz60a1yh8ucb26/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            tinymce.init({
+                selector: 'textarea#titulo, textarea#descripcion, textarea#contenido',
+                plugins: 'advlist autolink lists link image charmap preview anchor',
+                toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
+                menubar: false,
+                height: 300,
+                branding: false,
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        editor.save();
+                    });
+                }
+            });
+        });
+    </script>
+
+@endsection
 
 

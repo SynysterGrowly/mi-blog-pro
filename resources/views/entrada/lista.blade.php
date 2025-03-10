@@ -6,7 +6,6 @@
     <div class="container mt-4">
         <h1 class="mb-4">Lista de Entradas</h1>
 
-
         <div class="card shadow-sm">
             <div class="card-body">
                 <table class="table table-striped table-bordered">
@@ -32,9 +31,9 @@
                                     <span>Sin imagen</span>
                                 @endif
                             </td>
-                            <td>{{ $entrada->titulo }}</td>
-                            <td>{{ $entrada->descripcion }}</td>
-                            <td>{{ $entrada->contenido }}</td>
+                            <td>{!! $entrada->titulo !!}</td>
+                            <td>{!! $entrada->descripcion !!}</td>
+                            <td>{!! $entrada->contenido !!}</td>
                             <td>{{ $entrada->estado }}</td>
                             <td class="text-center">
                                 <a href="{{ route('entrada.edit', $entrada->id) }}" class="btn btn-warning btn-sm">

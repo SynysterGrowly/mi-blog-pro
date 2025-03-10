@@ -29,19 +29,24 @@ class EntradaController extends Controller
     {
         $validated = $request->validate([
             'titulo' => 'required|string|max:255',
-            'descripcion' => 'nullable|string|max:500',
-            'contenido' => 'nullable|string|max:500',
-            'categoria_id' => 'nullable|integer',
+            'descripcion' => 'nullable|string',
+            'contenido' => 'nullable|string',
+            'categoria_id' => 'nullable|integer|exists:categorias,id',
             'fecha_publicacion' => 'nullable|date',
             'estado' => 'nullable|string|max:500',
-            'usuario_id' => 'nullable|integer',
-
         ]);
 
         try {
             $entrada = Entrada::findOrFail($idEntrada);
 
-            $entrada->fill($validated);
+            // Permitir etiquetas HTML
+            $entrada->titulo = strip_tags($request->titulo, '<p><b><i><strong><em><ul><ol><li><br>');
+            $entrada->descripcion = strip_tags($request->descripcion, '<p><b><i><strong><em><ul><ol><li><br>');
+            $entrada->contenido = strip_tags($request->contenido, '<p><b><i><strong><em><ul><ol><li><br>');
+
+            $entrada->categoria_id = $request->categoria_id;
+            $entrada->fecha_publicacion = $request->fecha_publicacion;
+            $entrada->estado = $request->estado;
 
             if ($request->hasFile('imagen')) {
                 $imagenPath = $request->file('imagen')->store('imagenes', 'public');
@@ -50,40 +55,49 @@ class EntradaController extends Controller
 
             $entrada->save();
 
-            return redirect()->route('entrada.edit', $idEntrada)->with('success', 'Entrada actualizada exitosamente.');
+            return redirect()->route('entrada.lista', $idEntrada)->with('success', 'Entrada actualizada exitosamente.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors('Error. Por favor, inténtalo de nuevo.');
         }
     }
 
 
+
     public function store(Request $request)
     {
+        $request->validate([
+            'titulo' => 'required|string',
+            'descripcion' => 'required|string',
+            'contenido' => 'required|string',
+            'categoria_id' => 'nullable|exists:categorias,id',
+            'fecha_publicacion' => 'nullable|date',
+            'estado' => 'nullable|string|max:500',
+            'imagen' => 'nullable|image|max:2048',
+        ]);
 
         try {
-
             $nuevaEntrada = new Entrada();
-            $nuevaEntrada->titulo = $request->input('titulo');
-            $nuevaEntrada->descripcion = $request->input('descripcion');
-            $nuevaEntrada->contenido = $request->input('contenido');
-            $nuevaEntrada->categoria_id = $request->input('categoria_id');
-            $nuevaEntrada->fecha_publicacion = $request->input('fecha_publicacion');
-            $nuevaEntrada->estado = $request->input('estado');
+            $nuevaEntrada->titulo = $request->titulo;
+            $nuevaEntrada->descripcion = $request->descripcion;
+            $nuevaEntrada->contenido = $request->contenido;
+            $nuevaEntrada->categoria_id = $request->categoria_id;
+            $nuevaEntrada->fecha_publicacion = $request->fecha_publicacion;
+            $nuevaEntrada->estado = $request->estado;
             $nuevaEntrada->usuario_id = $request->user()->id;
 
             if ($request->hasFile('imagen')) {
                 $imagenPath = $request->file('imagen')->store('imagenes', 'public');
                 $nuevaEntrada->imagen = $imagenPath;
             }
+
             $nuevaEntrada->save();
 
             return redirect()->route('entrada.lista')->with('success', 'Entrada creada exitosamente.');
         } catch (\Exception $e) {
-
             return redirect()->back()->withErrors('Error al crear la entrada. Por favor, inténtalo de nuevo.');
         }
-
     }
+
     public function editar($idEntrada)
     {
 

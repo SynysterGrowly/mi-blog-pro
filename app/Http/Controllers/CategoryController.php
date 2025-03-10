@@ -28,10 +28,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         try {
-
             $nuevaCategoria = new Category();
-            $nuevaCategoria->nombre = $request->input('nombre');
-            $nuevaCategoria->descripcion = $request->input('descripcion');
+            $nuevaCategoria->nombre = strip_tags($request->input('nombre')); // Elimina etiquetas HTML
+            $nuevaCategoria->descripcion = strip_tags($request->input('descripcion')); // Elimina etiquetas HTML
 
             if ($request->hasFile('imagen')) {
                 $imagenPath = $request->file('imagen')->store('categorias', 'public');
@@ -46,6 +45,8 @@ class CategoryController extends Controller
         }
     }
 
+
+
     public function editar($idCategoria)
     {
 
@@ -57,31 +58,29 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048' // Opcional, solo si el usuario sube una imagen
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+            'imagen' => 'nullable|image|max:2048',
         ]);
 
         $categoria = Category::findOrFail($id);
-        $categoria->nombre = $request->nombre;
+        $categoria->nombre = $request->nombre; // Guardar con HTML
+        $categoria->descripcion = $request->descripcion;
 
-        // Verificar si el usuario subió una nueva imagen
+        // Manejo de imagen
         if ($request->hasFile('imagen')) {
-            // Borrar imagen anterior
             if ($categoria->imagen) {
                 Storage::delete('public/'.$categoria->imagen);
             }
-
-            // Guardar
-            $imagenPath = $request->file('imagen')->store('imagenes_categorias', 'public');
+            $imagenPath = $request->file('imagen')->store('categorias', 'public');
             $categoria->imagen = $imagenPath;
         }
 
-
         $categoria->save();
-
 
         return redirect()->route('categorias.edit', $categoria->id)->with('success', 'Categoría actualizada correctamente');
     }
+
 
     public function destroy($idCategoria)
     {
