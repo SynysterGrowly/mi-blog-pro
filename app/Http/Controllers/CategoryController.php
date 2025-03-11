@@ -80,7 +80,7 @@ class CategoryController extends Controller
         $categoria->save();
 
 
-        return redirect()->route('categorias.edit', $categoria->id)->with('success', 'Categoría actualizada correctamente');
+        return redirect()->route('categorias.lista', $categoria->id)->with('success', 'Categoría actualizada correctamente');
     }
 
     public function destroy($idCategoria)

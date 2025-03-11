@@ -1,15 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Categorias')
-@section('content')
+@section('title', 'Categorías')
 
+@section('content')
     <div class="container mt-4">
         <div class="row gy-5">
             <h1>Formulario de Categorías</h1>
 
-
             @if ($errors->any())
-                <div class="error">
+                <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -18,36 +17,59 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('categorias.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('entradas.store') }}" enctype="multipart/form-data">
                 @csrf
 
-
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre de la Categoría</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe el nombre de la categoría" value="{{ old('nombre') }}" required>
-                    @error('nombre')
-                    <div class="text-danger">{{ $message }}</div>
+                    <label for="titulo" class="form-label">Título</label>
+                    <input type="text" id="titulo" name="titulo" class="form-control"
+                           placeholder="Escribe el título" value="{{ old('titulo') }}" required>
+                    @error('titulo')
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="descripcion" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="5" placeholder="Escribe una breve descripción de la categoría" required>{{ old('descripcion') }}</textarea>
+                    <input type="text" id="descripcion" name="descripcion" class="form-control"
+                           placeholder="Escribe una breve descripción" value="{{ old('descripcion') }}" required>
                     @error('descripcion')
-                    <div class="text-danger">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="contenido" class="form-label">Contenido</label>
+                    <textarea id="contenido" name="contenido" class="form-control" rows="5" required>{{ old('contenido') }}</textarea>
+                    @error('contenido')
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="imagen" class="form-label">Imagen</label>
-                    <input type="file" id="imagen" name="imagen" class="form-control w-50" accept="image/*">
+                    <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
 
                     @error('imagen')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary">Guardar Categoría</button>
             </form>
         </div>
+    </div>
+@endsection
 
+@section('scripts')
+
+    <script src="https://cdn.tiny.cloud/1/ti67oyb3b0lqpoji4pvw9pr9zxmwguovh1yz60a1yh8ucb26/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#contenido',
+            menubar: false,
+            plugins: 'advlist autolink lists link charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount',
+            toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            content_css: '//www.tiny.cloud/css/codepen.min.css'
+        });
+    </script>
 @endsection

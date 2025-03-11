@@ -31,15 +31,15 @@
             @csrf
 
 
-                <div class="mb-3">
-                    <label for="titulo" class="form-label">Título</label>
-                    <textarea id="titulo" name="titulo" class="form-control" rows="2" required>{{ old('titulo') }}</textarea>
-                </div>
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" id="titulo" name="titulo" class="form-control" value="{{ old('titulo') }}" required>
+            </div>
 
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" class="form-control" rows="3" required>{{ old('descripcion') }}</textarea>
-                </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" id="descripcion" name="descripcion" class="form-control" value="{{ old('descripcion') }}" required>
+            </div>
 
                 <div class="mb-3">
                     <label for="contenido" class="form-label">Contenido</label>

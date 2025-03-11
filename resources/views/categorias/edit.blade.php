@@ -17,11 +17,12 @@
 
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <textarea class="form-control" id="descripcion" name="descripcion" rows="5">{{ old('descripcion', $categoria->descripcion) }}</textarea>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{ old('descripcion', $categoria->descripcion) }}" required>
             </div>
 
             @if ($categoria->imagen)
                 <div>
+                    <label class="form-label">Imagen Actual:</label>
                     <img src="{{ asset('storage/'.$categoria->imagen) }}" alt="Imagen actual" width="150">
                 </div>
             @endif

@@ -14,19 +14,12 @@
 
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
-                <textarea id="titulo" name="titulo" class="form-control" rows="2" required>{!! $entrada->titulo !!}</textarea>
-                @error('titulo')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+                <input type="text" id="titulo" name="titulo" class="form-control" value="{{ old('titulo', $entrada->titulo ?? '') }}" required>
             </div>
-
 
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <textarea id="descripcion" name="descripcion" class="form-control" rows="5" required>{!! $entrada->descripcion !!}</textarea>
-                @error('descripcion')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+                <input type="text" id="descripcion" name="descripcion" class="form-control" value="{{ old('descripcion', $entrada->descripcion ?? '') }}" required>
             </div>
 
 
@@ -85,7 +78,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             tinymce.init({
-                selector: 'textarea#contenido', // Solo se aplica a "contenido"
+                selector: 'textarea#contenido',
                 plugins: 'advlist autolink lists link image charmap preview anchor',
                 toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
                 menubar: false,
