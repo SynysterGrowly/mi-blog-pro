@@ -15,6 +15,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <style>
 
+
+
         .blog-list-page-item {
             border: 1px solid #ddd;
             border-radius: 8px;

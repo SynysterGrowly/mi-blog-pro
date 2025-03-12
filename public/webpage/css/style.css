@@ -1274,7 +1274,8 @@ blockquote {
 }
 
 .logo-img {
-  width: 226px;
+  width: 75px;
+    height: auto;
 }
 
 .cart-text {
@@ -1366,7 +1367,7 @@ blockquote {
 }
 
 .home-category {
-  padding-top: 170px;
+  padding-top: 100px;
   padding-bottom: 30px;
 }
 
@@ -1667,7 +1668,7 @@ blockquote {
   text-align: center;
   text-transform: uppercase;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 100;
   text-decoration: none;
   position: absolute;
   inset: auto 0% 0%;
@@ -2618,7 +2619,7 @@ blockquote {
 
 /* Base styles for the image and overlay */
 .staff-pick-post .feature-image-div {
-    overflow: hidden; 
+    overflow: hidden;
     border-radius: 10px;
     /* Ensures that the zoomed image doesn't exceed the container bounds */
 }
@@ -2785,7 +2786,7 @@ blockquote {
     opacity: 0.5; /* Adjust the value as needed */
 }
 
-.most-comments-list-item:hover .most-commented-title, 
+.most-comments-list-item:hover .most-commented-title,
 .most-comments-list-item:hover .meta-text {
     color: white; /* Keeping the hover color white */
 }

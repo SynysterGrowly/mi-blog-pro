@@ -22,7 +22,7 @@
 <div class="header">
     <div class="w-layout-blockcontainer main-container w-container">
         <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header-inner w-nav">
-            <a href="{{ route('web-page.principal') }}" aria-current="page" class="logo w-inline-block w--current"><img src="{{ asset('webpage/images/logo.png') }}" alt="" class="logo-img" /></a>
+            <a href="{{ route('web-page.principal') }}" aria-current="page" class="logo w-inline-block w--current"><img src="{{ asset('webpage/images/logogato.png') }}" alt="" class="logo-img" /></a>
             <nav role="navigation" class="main-menu w-nav-menu">
 
                 <a href="{{ route('webpage.categoriasPrincipal') }}" class="menu-item w-nav-link">Categorías</a>
@@ -55,11 +55,11 @@
                     <h4 class="footer-heading">contact</h4>
                     <a href="mailto:test@gmail.com?subject=Your%20Mail" class="footer-email-and-phone w-inline-block">
                         <img src="{{ asset('webpage/images/email.png') }}" alt="" class="footer-emailphone-icon"/>
-                        <div class="text-block">hello@frenzy.webflow.io</div>
+                        <div class="text-block">contacto@pms.edu.mx</div>
                     </a>
                     <a href="tel:+1231685496" class="footer-email-and-phone last-phone w-inline-block">
                         <img src="{{ asset('webpage/images/phone.png') }}" alt="" class="footer-emailphone-icon"/>
-                        <div class="text-block">+5 (123) 456 789 0</div>
+                        <div class="text-block">998390194</div>
                     </a>
                 </div>
 
