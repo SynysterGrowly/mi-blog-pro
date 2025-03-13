@@ -7,6 +7,7 @@ use App\Http\Controllers\WebPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EntradaController;
+use App\Http\Controllers\BuscadorController;
 
 
 
@@ -40,7 +41,5 @@ Route::get('/categorias/{idCategoria?}', [WebPageController::class, 'verCategori
 Route::get('/entradas', [WebPageController::class, 'verEntrada'])->name('webpage.entradaslist');
 Route::get('/categorias-principal', [WebPageController::class, 'mostrarTodasLasCategorias'])->name('webpage.categoriasPrincipal');
 
-
-
-
-
+//Search
+Route::get('/buscar', [BuscadorController::class, 'buscar'])->name('webpage.buscador');

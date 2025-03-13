@@ -2969,7 +2969,7 @@ blockquote {
 
 .socials {
   margin-top: 60px;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .socials .social-link {
@@ -2977,7 +2977,7 @@ blockquote {
 }
 
 .social-link {
-  background-color: #fff;
+  background-color: #4F959D !important;
   border-radius: 10px;
   align-items: center;
   margin-bottom: 5px;

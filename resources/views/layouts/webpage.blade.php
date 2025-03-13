@@ -34,9 +34,9 @@
             </div>
 
             <div class="header-right-side">
-                <form action="#" class="search-div w-form">
-                    <input class="search-field w-input" maxlength="256" name="query" placeholder="type something" type="search" id="search" required="" /><input type="submit" class="search-button w-button" value="Search" />
-                    <img src="{{ asset('webpage/images/search.png') }}" alt="" class="image" />
+                <form action="{{ route('webpage.buscador') }}" method="GET">
+                    <input type="text" name="query" placeholder="Buscar..." required>
+                    <button type="submit">Buscar</button>
                 </form>
             </div>
         </div>
