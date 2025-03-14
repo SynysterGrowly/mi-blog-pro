@@ -34,9 +34,10 @@
             </div>
 
             <div class="header-right-side">
-                <form action="{{ route('webpage.buscador') }}" method="GET">
-                    <input type="text" name="query" placeholder="Buscar..." required>
-                    <button type="submit">Buscar</button>
+                <form action="{{ route('webpage.buscador') }}" method="GET" class="search-div w-form">
+                    <input class="search-field w-input" maxlength="256" name="query" placeholder="Buscar..." type="search" id="search" required />
+                    <input type="submit" class="search-button w-button" value="Buscar" />
+                    <img src="{{ asset('webpage/images/search.png') }}" alt="Buscar" class="image" />
                 </form>
             </div>
         </div>
@@ -67,18 +68,21 @@
                 <div id="frenzy108" class="w-layout-cell footer-grid-item">
                     <h4 class="footer-heading">socials</h4>
                     <div class="foot-socials">
-                        <a href="http://www.facebook.com" target="_blank" class="social-link w-inline-block"><img
-                                src="{{ asset('webpage/images/fb.png') }}" alt="" class="foot-social-link"/></a>
-                        <a href="http://www.twitter.com" target="_blank" class="social-link w-inline-block"><img
-                                src="{{ asset('webpage/images/twitter.png') }}" alt="" class="foot-social-link"/></a>
-                        <a id="frenzy106" href="http://www.instagram.com" target="_blank"
-                           class="social-link w-inline-block">
-                            <img src="{{ asset('webpage/images/insta.png') }}" alt="" class="foot-social-link"/>
+                        <a href="https://m.facebook.com" target="_blank" class="social-link w-inline-block">
+                            <img src="{{ asset('webpage/images/fb.png') }}" alt="Facebook" class="foot-social-link"/>
                         </a>
-                        <a href="http://www.youtube.com" target="_blank" class="social-link w-inline-block"><img
-                                src="{{ asset('webpage/images/you.png') }}" alt="" class="foot-social-link"/></a>
-                        <a href="http://www.pinterest.com" target="_blank" class="social-link w-inline-block"><img
-                                src="{{ asset('webpage/images/pint.png') }}" alt="" class="foot-social-link"/></a>
+                        <a href="https://mobile.twitter.com" target="_blank" class="social-link w-inline-block">
+                            <img src="{{ asset('webpage/images/twitter.png') }}" alt="Twitter" class="foot-social-link"/>
+                        </a>
+                        <a id="frenzy106" href="https://www.instagram.com" target="_blank" class="social-link w-inline-block">
+                            <img src="{{ asset('webpage/images/insta.png') }}" alt="Instagram" class="foot-social-link"/>
+                        </a>
+                        <a href="https://m.youtube.com" target="_blank" class="social-link w-inline-block">
+                            <img src="{{ asset('webpage/images/you.png') }}" alt="YouTube" class="foot-social-link"/>
+                        </a>
+                        <a href="https://www.pinterest.com" target="_blank" class="social-link w-inline-block">
+                            <img src="{{ asset('webpage/images/pint.png') }}" alt="Pinterest" class="foot-social-link"/>
+                        </a>
                     </div>
                 </div>
 
