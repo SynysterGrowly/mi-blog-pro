@@ -43,6 +43,7 @@
     </div>
 </div>
 
+<br>
 
 @yield('pagina')
 

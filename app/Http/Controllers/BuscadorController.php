@@ -13,11 +13,8 @@ class BuscadorController extends Controller
     {
         $query = $request->input('query');
 
-
-        $entradas = Entrada::where('titulo', $query)->get();
-
-
         $categorias = Category::where('nombre', $query)->get();
+        $entradas = Entrada::where('titulo', $query)->get();
 
         return view('webpage.resultados', compact('entradas', 'categorias', 'query'));
     }

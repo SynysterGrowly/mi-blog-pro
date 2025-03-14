@@ -1376,6 +1376,22 @@ blockquote {
   margin-left: 2px;
 }
 
+/* Eliminar subrayado de enlaces en entradas y categorías debe llevar important  */
+.single-post-title a,
+.category-list a {
+    text-decoration: none !important;
+    color: inherit !important;
+    font-weight: bold;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.single-post-title a:hover,
+.category-list a:hover {
+    text-decoration: underline !important;
+    color: #3498db !important;
+}
+
 .single-post-section {
   padding: 240px 10px 70px;
 }
@@ -4153,7 +4169,7 @@ blockquote {
   }
 
   .logo-img {
-    width: 160px;
+      width: 75px;
   }
 
   .home-category {
