@@ -1555,11 +1555,18 @@ blockquote {
   margin-bottom: 0;
 }
 
-.footer-emailphone-icon {
-  background-color:#4F959D;
-  border-radius: 10px;
-  padding: 10px 30px;
+.footer-emailphone-icon:hover {
+    background-color: #3B7C84;
+    transform: scale(1.05);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
 
+.footer-emailphone-icon {
+    background-color: #4F959D;
+    border-radius: 10px;
+    padding: 10px 30px;
+    color: white;
+    transition: all 0.3s ease-in-out;
 }
 
 .text-block {
@@ -2990,6 +2997,35 @@ blockquote {
   margin-left: auto;
 }
 
+
+.back-link {
+    background-color: #4F959D !important;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    max-width: 200px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+
+.back-link:hover {
+    background-color: #3B7C84 !important;
+    transform: scale(1.05);
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.3);
+}
+
+
+.back-link:active {
+    transform: scale(0.95);
+}
+
 .socials {
     display: flex;
     justify-content: center;
@@ -2999,25 +3035,27 @@ blockquote {
 .social-link {
     background-color: #4F959D !important;
     color: white;
-    text-decoration: none;
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 10px;
     display: flex;
     align-items: center;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
     transition: all 0.3s ease-in-out;
 }
 
 .social-link:hover {
-    background-color: #3B7C84;
-    transform: scale(1.1);
+    background-color: #3B7C84 !important;
+    transform: scale(1.05);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
 
+.social-icon {
+    background-color: #4F959D;
+    border-radius: 10px;
+    padding: 10px 30px;
+    color: white;
 
-.scoial-icon {
-  width: 25px;
 }
 
 .social-text {

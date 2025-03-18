@@ -31,7 +31,7 @@
                                 <strong>Publicado:</strong> {{ $fecha ?? 'Fecha desconocida' }}
                             </p>
                             <br>
-                            <a href="{{ route('web-page.principal') }}" style="color: white;" class="btn social-link">Regresar</a>
+                            <a href="{{ route('web-page.principal') }}" class="btn back-link">Regresar</a>
                         </div>
                     </div>
                 </div>
