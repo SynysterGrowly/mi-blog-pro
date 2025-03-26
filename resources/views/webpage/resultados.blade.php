@@ -40,7 +40,7 @@
                             @endif
 
                             <br>
-                            <a href="{{ route('web-page.principal') }}" style="color: white;" class="btn social-link">Regresar</a>
+                            <a href="{{ route('web-page.principal') }}" class="btn back-link">Regresar</a>
                         </div> <!-- Cierra .singleinner -->
                     </div> <!-- Cierra .single-body -->
                 </div> <!-- Cierracolumn  -->
